@@ -31,12 +31,15 @@ Steps to follow for development / Setting up
 	- Client   `npm run dev`
 
 4. Features/Contributions via Pull request
-Make sure you are on the main branch
-`git checkout -b {feature branch name}`
-Make the changes/ Add the feature
-`git add .`
-`git commit -m "{short feature desc}"`
-`git push origin {feature branch name}`
+
+	Make sure you are on the main branch
+	`git checkout -b {feature branch name}`
+
+	Make the changes/ Add the feature
+	
+	`git add .`
+	`git commit -m "{short feature desc}"`
+	`git push origin {feature branch name}`
 
 	Go the Pull Requests Section on Github and create a PR
 
