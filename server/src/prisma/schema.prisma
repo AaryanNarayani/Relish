@@ -1,0 +1,83 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id          Int         @id @default(autoincrement())
+  name        String
+  email       String      @unique
+  password    String
+  address     String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  orders      Order[]
+  reviews     Review[]
+  restaurants Restaurant[]
+}
+
+model Restaurant {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String?
+  address     String
+  cuisine     String[]
+  menuItems   MenuItem[]
+  reviews     Review[]
+  orders      Order[]
+  owner       User       @relation(fields: [ownerId], references: [id])
+  ownerId     Int
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model MenuItem {
+  id           Int        @id @default(autoincrement())
+  name         String
+  description  String?
+  price        Decimal    @db.Decimal(10, 2)
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  restaurantId Int
+  orderItems   OrderItem[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model Order {
+  id           Int        @id @default(autoincrement())
+  user         User       @relation(fields: [userId], references: [id])
+  userId       Int
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  restaurantId Int
+  items        OrderItem[]
+  totalPrice   Decimal    @db.Decimal(10, 2)
+  status       String     @default("placed")
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model OrderItem {
+  id         Int      @id @default(autoincrement())
+  order      Order    @relation(fields: [orderId], references: [id])
+  orderId    Int
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+  menuItemId Int
+  quantity   Int
+  price      Decimal  @db.Decimal(10, 2)
+}
+
+model Review {
+  id           Int        @id @default(autoincrement())
+  user         User       @relation(fields: [userId], references: [id])
+  userId       Int
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  restaurantId Int
+  rating       Int
+  comment      String?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
