@@ -80,7 +80,7 @@ router.post("/register", async (req: Request, res: Response) => {
     }
 
     const prisma = getPrisma();
-    const userExists = await prisma.user.findUnique({
+    const userExists = await prisma.user.findUnique({ 
       where: { email: payload.email },
     });
 
