@@ -8,16 +8,20 @@ generator client {
 }
 
 model User {
-  id          Int         @id @default(autoincrement())
-  name        String
-  email       String      @unique
-  password    String
-  address     String?
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  orders      Order[]
-  reviews     Review[]
-  restaurants Restaurant[]
+  id            Int         @id @default(autoincrement())
+  name          String
+  email         String      @unique
+  password      String?     // Made optional for OAuth users
+  address       String?
+  googleId      String?     @unique  // Unique identifier from Google
+  googleProfile Json?       // Store additional Google profile info if needed
+  avatar        String?     // URL to user's avatar (can be from Google or uploaded)
+  isVerified    Boolean     @default(false)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  orders        Order[]
+  reviews       Review[]
+  restaurants   Restaurant[]
 }
 
 model Restaurant {
