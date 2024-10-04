@@ -7,11 +7,13 @@
 
 
 :root{
-    --primary: #FF9800;
+    --primary: #FEBA42;
     --secondary: #5D4037;
     --trinary: #FFF8E1;
+    --meta: #FF9800 ;
     --veg: #7CB342;
     --nonVeg: #D32F2F;
+    --line: rgba(93, 64, 55, 0.2);
     --inria: "Inria Serif", serif;
     --manrope: "Manrope", sans-serif;
 }
