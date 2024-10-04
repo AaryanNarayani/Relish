@@ -11,7 +11,7 @@ const navItems = [
   },
   {
     name: "Sign Up",
-    url: "/admin",
+    url: "/user/register",
   },
 ];
 
@@ -24,9 +24,9 @@ function NavBar() {
 
   return (
     <header className="flex justify-center">
-      <nav className="flex justify-between items-center px-2 w-[90%] border-b border-[--secondary] h-16 text-[--secondary] text-xl">
+      <nav className="flex justify-between items-center px-2 w-[90%] border-b border-[--line] h-16 text-[--secondary] text-xl">
         <div>
-          <Link to="/">Logo</Link>
+          <Link to="/"><img src="/Relish-logo.png" alt="" className="h-12"/></Link>
         </div>
 
         <ul className="flex gap-20 ">{navItemsList}</ul>

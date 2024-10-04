@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
 import NavBar from "./components/NavBar";
 import SearchPage from "./pages/SearchPage";
+import UserRegistrationPage from "./pages/(auth)/UserRegistrationPage";
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage/>}/>
         <Route path='/user' element={<UserPage/>}/>
+        <Route path='/user/register' element={<UserRegistrationPage/>}/>
         <Route path='/admin' element={<HomePage/>}/>
-        <Route path='/search' element={<SearchPage/>}/>
+        <Route path='/find' element={<SearchPage/>}/>
 
       </Routes>
 
