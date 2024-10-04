@@ -5,11 +5,14 @@ import { authRouter } from "./routes/authRouter";
 import { adminRouter } from "./routes/adminRouter";
 import { restoRouter } from "./routes/restoRouter";
 import { getPrisma } from "./utils/getPrisma";
+import cors from "cors";
 
 const app = express();
 const port = 8080;
 
-
+app.use(cors({
+    origin: 'http://localhost:5173',
+}));
 app.use(express.json());
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/admin", adminRouter);
