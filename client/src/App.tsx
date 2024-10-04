@@ -1,10 +1,13 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import UserPage from "./pages/UserPage";
+
 import NavBar from "./components/NavBar";
 import SearchPage from "./pages/SearchPage";
 import UserRegistrationPage from "./pages/(auth)/UserRegistrationPage";
+
+import UserLoginPage from "./pages/(auth)/UserLoginPage";
+
 import { Toaster } from "sonner";
 import {
   CircleAlert,
@@ -14,6 +17,7 @@ import {
   Loader,
 } from "lucide-react";
 import NotFoundPage from "./pages/NotFoundPage";
+
 
 function App() {
   return (
@@ -40,13 +44,15 @@ function App() {
       />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/user" element={<UserPage />} />
+        <Route path="/user/login" element={<UserLoginPage />} />
         <Route path="/user/register" element={<UserRegistrationPage />} />
         <Route path="/admin" element={<HomePage />} />
         <Route path="/find" element={<SearchPage />} />
         <Route path="*" element={<NotFoundPage />} />
+
       </Routes>
     </Router>
+   
   );
 }
 
