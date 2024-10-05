@@ -38,7 +38,7 @@ function UserLoginPage() {
 
   return (
   <div className="w-full   flex justify-center items-center h-[calc(100vh-100px)]">
-    <div className="w-[400px] h-fit bg-white rounded flex flex-col px-8 py-10 gap-5">
+    <div className="w-[450px] h-fit bg-white rounded flex flex-col px-8 py-10 gap-5">
         <div 
           className="flex flex-row items-center justify-between">
             <h1 className="text-4xl text-[--secondary]">Login</h1>
@@ -80,7 +80,7 @@ function UserLoginPage() {
                  {display ? <Eye/> : <EyeOff/>}
             </div>
         </div>
-        <button className="w-full h-fit bg-[--primary] border border-[--primary] rounded-full px-1 py-2 text-[--secondary] font-semibold hover:bg-white hover:text-[--primary] hover:border-[--primary]"
+        <button className="w-full h-fit bg-[--primary] border border-[--primary] rounded-full px-1 py-2 text-[--secondary]  hover:bg-white hover:text-[--primary] hover:border-[--primary]"
                 onClick={handleSubmit}
         >
             LOGIN
@@ -89,10 +89,10 @@ function UserLoginPage() {
           <hr className="border border-[--primary]  opacity-40"/>
           <p className="p-1 bg-white absolute  right-1/2 translate-x-[50%] translate-y-[-50%]" >OR</p>
         </div>
-        <Link to='/user/login/phone' className="w-full h-12 bg-[--trinary] rounded-full px-1 py-2 text-[--secondary] font-semibold flex flex-row gap-4 items-center justify-center">
+        <Link to='/user/login/phone' className="w-full h-12 bg-[--trinary] rounded-full px-1 py-2 text-[--secondary]  flex flex-row gap-4 items-center justify-center">
         <Phone />Login using Mobile
         </Link>
-        <button className="flex w-full h-12 bg-[--trinary] rounded-full px-1 py-2 text-[--secondary] font-semibold gap-4 items-center justify-center" onClick={handleGoogleAuth}>
+        <button className="flex w-full h-12 bg-[--trinary] rounded-full px-1 py-2 text-[--secondary]  gap-4 items-center justify-center" onClick={handleGoogleAuth}>
           <img src="/googleIcon.png" className="h-6 w-6"></img> Login with Google
         </button>
         <hr className="border border-[--primary] opacity-40"/>

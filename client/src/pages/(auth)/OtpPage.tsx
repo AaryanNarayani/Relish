@@ -132,7 +132,7 @@ function OtpPage() {
         </button>
         <hr className="border border-[--primary]  opacity-40 w-[90%]" />
         <div className="flex justify-start w-[90%]">
-          <p>New&nbsp;?&nbsp;</p>
+          <p>New &nbsp; ? &nbsp; </p>
           <Link to="/user/register" className="text-[--primary]">
             Sign Up
           </Link>
