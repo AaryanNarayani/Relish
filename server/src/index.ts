@@ -11,6 +11,7 @@ import passport from 'passport';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsDoc from 'swagger-jsdoc';
 import './middlewares/oAuthMiddleware';
+import { JWT_SECRET } from "./utils";
 
 const app = express();
 
@@ -28,7 +29,7 @@ const swaggerOptions = {
       },
     ],
   },
-  apis: ['./routes/*.ts'], // Path to the API docs
+  apis: ['./routes/*.ts'], 
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -40,9 +41,8 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Configure express-session middleware
 app.use(session({
-  secret: 'your_secret_key', // Replace with your secret key
+  secret: JWT_SECRET as string, 
   resave: false,
   saveUninitialized: true,
 }));
