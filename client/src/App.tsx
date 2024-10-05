@@ -17,6 +17,8 @@ import {
   Loader,
 } from "lucide-react";
 import NotFoundPage from "./pages/NotFoundPage";
+import UserPhoneLoginPage from "./pages/(auth)/UserPhoneLoginPage";
+import OtpPage from "./pages/(auth)/OtpPage";
 
 
 function App() {
@@ -45,6 +47,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/user/login" element={<UserLoginPage />} />
+        <Route path="/user/login/phone" element={<UserPhoneLoginPage/>} />
+        <Route path="/user/login/otp" element={<OtpPage/>} />
         <Route path="/user/register" element={<UserRegistrationPage />} />
         <Route path="/admin" element={<HomePage />} />
         <Route path="/find" element={<SearchPage />} />

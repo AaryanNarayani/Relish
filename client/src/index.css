@@ -1,24 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Manrope:wght@200..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Manrope:wght@200..800&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Manrope:wght@200..800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-:root{
-    --primary: #FEBA42;
-    --secondary: #5D4037;
-    --trinary: #FFF8E1;
-    --meta: #FF9800 ;
-    --veg: #7CB342;
-    --nonVeg: #D32F2F;
-    --line: rgba(93, 64, 55, 0.2);
-    --inria: "Inria Serif", serif;
-    --manrope: "Manrope", sans-serif;
+@font-face {
+  font-family: "relative-faux";
+  src: local("relative-faux"),
+    url("./fonts/relative-faux.otf") format("opentype");
+  font-weight: normal;
 }
 
-html, body{
-    background-color: var(--trinary);
-    font-family:var(--inria)
+:root {
+  --primary: #feba42;
+  --secondary: #5d4037;
+  --trinary: #fff8e1;
+  --meta: #ff9800;
+  --veg: #7cb342;
+  --nonVeg: #d32f2f;
+  --line: rgba(93, 64, 55, 0.2);
+  --relative: relative-faux, serif;
+  --manrope: "Manrope", sans-serif;
+}
+
+html,
+body {
+  background-color: var(--trinary);
+  font-family: var(--relative);
 }

@@ -89,9 +89,9 @@ function UserLoginPage() {
           <hr className="border border-[--primary]  opacity-40"/>
           <p className="p-1 bg-white absolute  right-1/2 translate-x-[50%] translate-y-[-50%]" >OR</p>
         </div>
-        <button className="w-full h-12 bg-[--trinary] rounded-full px-1 py-2 text-[--secondary] font-semibold flex flex-row gap-4 items-center justify-center">
+        <Link to='/user/login/phone' className="w-full h-12 bg-[--trinary] rounded-full px-1 py-2 text-[--secondary] font-semibold flex flex-row gap-4 items-center justify-center">
         <Phone />Login using Mobile
-        </button>
+        </Link>
         <button className="flex w-full h-12 bg-[--trinary] rounded-full px-1 py-2 text-[--secondary] font-semibold gap-4 items-center justify-center" onClick={handleGoogleAuth}>
           <img src="/googleIcon.png" className="h-6 w-6"></img> Login with Google
         </button>
