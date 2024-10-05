@@ -28,16 +28,13 @@ function NavBar() {
     <header className="flex justify-center">
       <nav className="flex justify-between items-center px-2 w-[90%] border-b border-[--line] h-16 text-[--secondary] text-xl">
 
-        <div>
-          <Link to="/"><img src="/Relish-logo.png" alt="" className="h-12"/></Link>
-
         <div className="flex items-end ">
           <Link to="/"><img src="/Relish-logo.png" alt="" className="h-12"/></Link>
-          <h1 className="rounded-full bg-[--secondary] text-[--primary] px-2 border border-[--primary] -translate-x-4 text-md">v {version}</h1>
-
+          <h1 className="rounded-full h-6 w-10 bg-[--secondary] text-[--primary] px-1 flex justify-center items-center border border-[--primary] -translate-x-0 text-sm">v {version}</h1>
         </div>
 
         <ul className="flex gap-20 ">{navItemsList}</ul>
+        
       </nav>
     </header>
   );

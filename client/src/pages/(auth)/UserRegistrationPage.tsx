@@ -77,6 +77,10 @@ function UserRegistrationPage() {
        }
   };
 
+  function handleGoogleAuth() {
+    window.location.href = "http://localhost:8080/api/v1/auth/google";
+  }
+
   return (
     <div className="flex justify-center items-center h-[calc(100vh-100px)] rounded">
       <div className="w-1/3 bg-white px-10 py-10 flex flex-col gap-3">
@@ -154,15 +158,17 @@ function UserRegistrationPage() {
           <input type="checkbox" className="rounded" />
           <label>Remember me</label>
         </div>
-
-        <button
-
-          className="w-full bg-[--primary] p-2 rounded-full duration-300 border border-[--primary] hover:bg-white text-[--secondary] hover:text-[--primary]"
-
-          onClick={postUserDetails}
-        >
-          Sign up
-        </button>
+        <div>
+          <button
+            className="w-full mt-2 h-12 bg-[--primary] p-2 rounded-full duration-300 border border-[--primary] hover:bg-white text-[--secondary] hover:text-[--primary]"
+            onClick={postUserDetails}
+          >
+            Sign up
+          </button>
+          <button className="flex mt-4 w-full h-12 bg-[--trinary] rounded-full px-1 py-2 text-[--secondary] font-semibold gap-4 items-center justify-center" onClick={handleGoogleAuth}>
+            <img src="/googleIcon.png" className="h-6 w-6"></img> Sign up with Google
+          </button>
+        </div>
         <div>User ? <Link to='/user/login' className="text-[--primary]"> Login</Link></div>
       </div>
     </div>
