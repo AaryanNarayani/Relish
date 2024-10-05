@@ -6,8 +6,30 @@ import { adminRouter } from "./routes/adminRouter";
 import { restoRouter } from "./routes/restoRouter";
 import { getPrisma } from "./utils/getPrisma";
 import cors from "cors";
+import swaggerUi from 'swagger-ui-express';
+import swaggerJsDoc from 'swagger-jsdoc';
 
 const app = express();
+
+const swaggerOptions = {
+    swaggerDefinition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'Relish API',
+            version: '1.0.0',
+            description: 'API documentation for Relish',
+        },
+        servers: [
+            {
+                url: 'http://localhost:8080',
+            },
+        ],
+    },
+    apis: ['./routes/*.ts'], // Path to the API docs
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 const port = 8080;
 
 app.use(cors({
