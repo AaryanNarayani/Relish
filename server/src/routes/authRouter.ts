@@ -7,16 +7,25 @@ import authMiddleware from "../middlewares/authMiddleware";
 import passport from "passport";
 import changePwShema from "../types/auth/changePwSchema";
 import { JWT_SECRET } from "../utils";
+import rateLimit from 'express-rate-limit';
 import { getPrisma } from "../utils/getPrisma";
+import { phoneSchema } from "../types/auth/phoneSchema";
+import { otpGen } from "../utils/otpGen";
+import { verifySchema } from "../types/auth/verifySchema";
+import axios from "axios";
 
 const express = require("express");
 const router = express.Router();
+let RealOTP = "";
 interface CustomUser {
   id: string;
   email: string;
   displayName: string;
   photos: { value: string }[];
   _json: JSON; 
+}
+interface OtpRequest extends Request {
+  otp?: string;
 }
 
 interface CustomRequest extends Request {
@@ -26,6 +35,26 @@ interface CustomRequest extends Request {
 interface AuthRequest extends Request {
   userId?: number;
 }
+
+const otpRequestLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes window
+  max: 5, 
+  message: {
+    message: "Too many OTP requests from this IP, please try again after 45 minutes.",
+  },
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false,  // Disable the `X-RateLimit-*` headers
+});
+
+const phoneVerifyLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, 
+  max: 5, 
+  message: {
+    message: "Too many verification attempts from this IP, please try again after 45 minutes.",
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 router.get("/", (req: Request, res: Response) => {
   console.log("Hit Auth Route");
@@ -144,6 +173,94 @@ router.post("/change-password",authMiddleware,async (req: AuthRequest, res: Resp
   }
 }
 );
+
+router.post('/register/phone', otpRequestLimiter , async (req: OtpRequest, res: Response) => {
+  try {
+    const { body: payload } = req;
+    const { success, error } = phoneSchema.safeParse(payload);
+    
+    if (!success) {
+      console.log("Invalid Payload", error);
+      return res.status(411).json({ message: "Invalid inputs sent" });
+    }
+
+    const prisma = getPrisma();
+    const user = await prisma.user.findUnique({
+      where: { phone: payload.phone as string },
+    });
+    if (user) {
+      return res.status(401).json({ message: "This Phone number already exists!" });
+    }
+    let otp = otpGen(4);
+    const phoneNum = payload.phone as string;
+    let result = await axios.post('https://textflow.me/api/send-sms', {
+      phone_number: `+91 ${phoneNum}`,
+      text: `Your OTP for registration is ${otp}`,
+    },{
+      headers: {
+        authorization: `Bearer ${process.env.SMS_API_KEY}`,
+      }
+    });
+    if(result.status == 200){
+      RealOTP = `Your OTP for registration is ${otp}`;  
+    }
+    if (result.status !== 200) {
+      console.log("Failed to send message");
+      return res.status(500).json({ message: "Failed to send message" });
+    }
+    console.log("OTP sent successfully");
+    return res.status(200).json({ message: "Verification Code sent" });
+  } catch (e) {
+    console.error("Error during adding phone number:", e);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+router.post('/verify/phone', phoneVerifyLimiter, async (req: OtpRequest, res: Response) => {
+  try {
+    const { body: payload } = req;
+    const { success, error } = verifySchema.safeParse(payload);
+    
+    if (!success) {
+      console.log("Invalid Payload", error);
+      return res.status(411).json({ message: "Invalid inputs sent" });
+    }
+
+    
+    const prisma = getPrisma();
+    const phoneNum = `+91 ${payload.phone}`;
+    console.log("Phone number:", phoneNum);
+    const otp = payload.otp as string;
+    const AsliOtp = `Your OTP for registration is ${otp}`;
+    if (RealOTP !== AsliOtp) {
+      console.log(RealOTP, AsliOtp);
+      return res.status(401).json({ message: "Invalid OTP try the whole process after 5 mins" });
+    }
+    console.log("OTP verified successfully");
+    const user = await prisma.user.upsert({
+      where: { phone: payload.phone as string },
+      update: {
+        phone: payload.phone as string,
+        isVerified: true,
+      },
+      create: {
+        name: payload.name as string,
+        phone: payload.phone as string,
+        isVerified: true,
+      },
+    });
+
+    const token = jwt.sign({ id: user.id }, JWT_SECRET as string, {
+      expiresIn: "3h",
+    });
+
+    return res.status(200).json({ message: "Phone number verified" , token});
+
+  } catch (e) {
+    console.error("Error during verifying phone number:", e);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+});
 
 router.post("/register", async (req: Request, res: Response) => {
   try {
