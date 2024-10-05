@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { AwardIcon, Eye, EyeOff } from "lucide-react";
+import {Eye, EyeOff } from "lucide-react";
 import { Link } from "react-router-dom";
+import { toast } from 'sonner'
 import axios from "axios";
 
 type FormData = {
@@ -52,16 +53,22 @@ function UserRegistrationPage() {
   const postUserDetails = async () => {
        if(checkPassword()){
          try{
-            const result = await axios.post('http://localhost:8080/api/v1/register',{
+
+ 
+            const result = await axios.post('http://localhost:8080/api/v1/auth/register',{
+
             name:formData.name,
             email:formData.email,
             password:formData.password,
          })
-         console.log(result)
+
+         console.log(result.data)
+         toast.success('Registered successfully')
          //aage ka likh lavde
          }
-         catch(e){
-            console.error('Could not create user')
+         catch(e : any){
+          toast.error(e.response.data.message)
+            console.error('Could not create user:' , e.response.data.message)
          }
        }
        else{
@@ -149,7 +156,9 @@ function UserRegistrationPage() {
         </div>
 
         <button
-          className="w-full bg-[--primary] p-2 rounded-full duration-300 border border-[--primary] hover:bg-white text-white hover:text-[--primary]"
+
+          className="w-full bg-[--primary] p-2 rounded-full duration-300 border border-[--primary] hover:bg-white text-[--secondary] hover:text-[--primary]"
+
           onClick={postUserDetails}
         >
           Sign up

@@ -32,6 +32,7 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 const port = 8080;
 
+
 app.use(cors({
     origin: 'http://localhost:5173',
 }));
