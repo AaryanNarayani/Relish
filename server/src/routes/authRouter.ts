@@ -1,15 +1,27 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import registerSchema from "../types/auth/registerSchema";
 import loginSchema from "../types/auth/loginSchema";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import authMiddleware from "../middlewares/authMiddleware";
+import passport from "passport";
 import changePwShema from "../types/auth/changePwSchema";
 import { JWT_SECRET } from "../utils";
 import { getPrisma } from "../utils/getPrisma";
 
 const express = require("express");
 const router = express.Router();
+interface CustomUser {
+  id: string;
+  email: string;
+  displayName: string;
+  photos: { value: string }[];
+  _json: JSON; 
+}
+
+interface CustomRequest extends Request {
+  user?: CustomUser;
+}
 
 interface AuthRequest extends Request {
   userId?: number;
@@ -19,6 +31,70 @@ router.get("/", (req: Request, res: Response) => {
   console.log("Hit Auth Route");
   res.send("Auth Route");
 });
+
+router.get("/login/success", async (req: CustomRequest, res: Response) => {
+  if (req.user) {
+    try {
+      const prisma = getPrisma();
+      const user = await prisma.user.upsert({
+        where: { email: req.user.email },
+        update: {
+          googleId: req.user.id,
+          googleProfile: JSON.parse(JSON.stringify(req.user._json)),
+          avatar: req.user.photos[0].value || '',
+        },
+        create: {
+          name: req.user.displayName,
+          email: req.user.email,
+          googleId: req.user.id,
+          googleProfile: JSON.parse(JSON.stringify(req.user._json)),
+          avatar: req.user.photos[0].value || '',
+          isVerified: true,
+        },
+      });
+
+      const token = jwt.sign({ id: user.id }, JWT_SECRET as string, {
+        expiresIn: "3h",
+      });
+
+      return res.status(200).json({
+        error: false,
+        message: "Successfully Logged In",
+        user: user,
+        token: token,
+      });
+      
+    } catch (error) {
+      console.error("Error during login success handling:", error);
+      res.status(500).json({ error: true, message: "Internal Server Error" });
+    }
+  } else {
+    return res.status(403).json({ error: true, message: "Not Authorized" });
+  }
+});
+
+router.get("/login/failed", (_:Request, res: Response) => {
+  return res.status(401).json({
+    error: true,
+    message: "Log in failure",
+  });
+});
+
+router.get("/logout", (req:Request, res:Response, next:NextFunction) => {
+  req.logout((err) => {
+    if (err) { return next(err); }
+    const clientUrl = process.env.CLIENT_URL || "/";
+    res.redirect(clientUrl);
+  });
+});
+
+router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+
+router.get("/google/callback",passport.authenticate("google", {
+    successRedirect: process.env.CLIENT_URL || "/",
+    failureRedirect: "/login/failed",
+  })
+);
 
 router.post("/change-password",authMiddleware,async (req: AuthRequest, res: Response) => {
   try {

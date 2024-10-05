@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Mail, X } from "lucide-react";
+import { Phone, X } from "lucide-react";
 import {Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import {Link } from "react-router-dom";
@@ -10,10 +10,7 @@ type FormData = {
   password : string;
 }
 
-type password = boolean;
-
-
-function UserPage() {
+function UserLoginPage() {
 
 
   const [formData , setFormData] = useState<FormData>({
@@ -35,6 +32,9 @@ function UserPage() {
     console.log(formData)
   }
 
+  function handleGoogleAuth() {
+    window.location.href = "http://localhost:8080/api/v1/auth/google";
+  }
 
   return (
   <div className="w-full   flex justify-center items-center h-[calc(100vh-100px)]">
@@ -89,8 +89,11 @@ function UserPage() {
           <hr className="border border-[--primary]  opacity-40"/>
           <p className="p-1 bg-white absolute  right-1/2 translate-x-[50%] translate-y-[-50%]" >OR</p>
         </div>
-        <button className="w-full h-fit bg-[--trinary] rounded-full px-1 py-2 text-[--secondary] font-semibold flex flex-row gap-4 items-center justify-center">
-        <Mail />LOGIN USING MOBILE
+        <button className="w-full h-12 bg-[--trinary] rounded-full px-1 py-2 text-[--secondary] font-semibold flex flex-row gap-4 items-center justify-center">
+        <Phone />Login using Mobile
+        </button>
+        <button className="flex w-full h-12 bg-[--trinary] rounded-full px-1 py-2 text-[--secondary] font-semibold gap-4 items-center justify-center" onClick={handleGoogleAuth}>
+          <img src="/googleIcon.png" className="h-6 w-6"></img> Login with Google
         </button>
         <hr className="border border-[--primary] opacity-40"/>
         <div className=" flex flex-row text-sm gap-1">
@@ -104,4 +107,4 @@ function UserPage() {
   );
 }
 
-export default UserPage
+export default UserLoginPage
