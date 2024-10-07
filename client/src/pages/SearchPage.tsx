@@ -10,6 +10,7 @@ interface SearchResult {
   price: number;
   stars: number;
   url: string;
+  veg: boolean;
 }
 
 const searchResultList: SearchResult[] = [
@@ -19,6 +20,7 @@ const searchResultList: SearchResult[] = [
     price: 13.99,
     stars: 4,
     url: "/search/dishes/tonkotsu-tumbnail.png",
+    veg: true,
   },
   {
     dish: "Pancakes",
@@ -26,6 +28,7 @@ const searchResultList: SearchResult[] = [
     price: 9.99,
     stars: 5,
     url: "/search/dishes/panCakes-tumbnail.png",
+    veg: true,
   },
   {
     dish: "Sushi",
@@ -33,6 +36,7 @@ const searchResultList: SearchResult[] = [
     price: 15.99,
     stars: 4,
     url: "/search/dishes/sushi-tumbnail.png",
+    veg: true,
   },
   {
     dish: "Waffles",
@@ -40,6 +44,7 @@ const searchResultList: SearchResult[] = [
     price: 15.99,
     stars: 3,
     url: "/search/dishes/waffles-tumbnail.png",
+    veg: false,
   },
   {
     dish: "Tonkotsu Ramen",
@@ -47,6 +52,7 @@ const searchResultList: SearchResult[] = [
     price: 13.99,
     stars: 4,
     url: "/search/dishes/tonkotsu-tumbnail.png",
+    veg: true,
   },
   {
     dish: "Pancakes",
@@ -54,6 +60,7 @@ const searchResultList: SearchResult[] = [
     price: 9.99,
     stars: 5,
     url: "/search/dishes/panCakes-tumbnail.png",
+    veg: true,
   },
   {
     dish: "Sushi",
@@ -61,6 +68,7 @@ const searchResultList: SearchResult[] = [
     price: 15.99,
     stars: 4,
     url: "/search/dishes/sushi-tumbnail.png",
+    veg: false,
   },
   {
     dish: "Waffles",
@@ -68,6 +76,7 @@ const searchResultList: SearchResult[] = [
     price: 15.99,
     stars: 3,
     url: "/search/dishes/waffles-tumbnail.png",
+    veg: true,
   },
 ];
 

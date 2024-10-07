@@ -7,9 +7,10 @@ interface SearchCardProps {
   price: number;
   stars: number;
   url: string;
+  veg: boolean;
 }
 
-function SearchCard({ dish, desc, price, stars, url }: SearchCardProps) {
+function SearchCard({ dish, desc, price, stars, url, veg }: SearchCardProps) {
   const [count, setCount] = useState(0);
 
   const incrementCount = () => setCount(prev => prev + 1);
@@ -39,7 +40,7 @@ function SearchCard({ dish, desc, price, stars, url }: SearchCardProps) {
             </div>
           )}
         </div>
-        <h1 className="text-[--nonVeg] font-bold">{dish}</h1>
+        <h1 className={` ${ veg ? 'text-[--veg]' : 'text-[--nonVeg]'}  font-bold`}>{dish}</h1>
         <p className="text-xs font-[manrope]">{desc}</p>
         <div className="flex justify-between mt-1">
           <p className="text-[--meta]">${price.toFixed(2)}</p>

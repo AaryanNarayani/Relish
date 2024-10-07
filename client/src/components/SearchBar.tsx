@@ -26,13 +26,13 @@ function SearchBar(){
     <div className="w-[30rem] bg-white h-10 rounded-full flex items-center pr-4">
       <div className="flex gap-4 text-[--secondary] border-r border-[--secondary] py-4 w-1/3 relative items-center h-full">
         <button 
-          className={`absolute left-0 h-full px-4 transition-all duration-300 ${isSelected === 'dish' ? 'font-bold bg-[--primary] rounded-full text-white' : ''}`} 
+          className={`absolute left-0 h-full px-4 transition-all duration-300 ${isSelected === 'dish' ? 'font-bold bg-[--primary] rounded-full' : ''}`} 
           onClick={() => setIsSelected('dish')}
         >
           Dish
         </button>
         <button 
-          className={`absolute right-1 h-full px-4 transition-all duration-300 ${isSelected === 'resto' ? 'font-bold bg-[--primary] rounded-full text-white' : ''}`} 
+          className={`absolute right-1 h-full px-4 transition-all duration-300 ${isSelected === 'resto' ? 'font-bold bg-[--primary] rounded-full ' : ''}`} 
           onClick={() => setIsSelected('resto')}
         >
           Resto

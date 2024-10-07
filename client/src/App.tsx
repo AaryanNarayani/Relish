@@ -19,6 +19,7 @@ import {
 import NotFoundPage from "./pages/NotFoundPage";
 import UserPhoneLoginPage from "./pages/(auth)/UserPhoneLoginPage";
 import OtpPage from "./pages/(auth)/OtpPage";
+import FooterBar from "./components/FooterBar";
 
 
 function App() {
@@ -55,6 +56,8 @@ function App() {
         <Route path="*" element={<NotFoundPage />} />
 
       </Routes>
+
+      <FooterBar/>
     </Router>
    
   );

@@ -1,0 +1,20 @@
+export const SocialLinks = [{
+    name:'Linkedin',
+    url:'/',
+    imgUrl:'/socialLinks/linkedin.png'   
+},
+{
+    name:'x',
+    url:'/',
+    imgUrl:'/socialLinks/x.png'   
+},
+{
+    name:'instagram',
+    url:'/',
+    imgUrl:'/socialLinks/instagram.png'   
+},
+{
+    name:'Linkedin',
+    url:'/',
+    imgUrl:'/socialLinks/linkedin.png'   
+},]
