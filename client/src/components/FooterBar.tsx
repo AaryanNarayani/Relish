@@ -5,9 +5,9 @@ import { SocialLinks } from "../items/footerSocialLinks"
 
 function FooterBar() {
   const list = footerItems.map((item: any, key: number) => (
-    <>
+    <div key={key}>
       <FooterBarItems item={item} />
-    </>
+    </div>
   ));
 
   return (
@@ -23,7 +23,7 @@ function FooterBar() {
             <div className="flex gap-2">
                 { SocialLinks.map((item : any , key : number)=>(
 
-                <Link to={item.url} className="bg-black w-fit rounded-full flex h-8"><img src={item.imgUrl} alt={item.name} /></Link>
+                <Link to={item.url} className="bg-black w-fit rounded-full flex h-8" key={key}><img src={item.imgUrl} alt={item.name} /></Link>
 
             ))}
             </div>
@@ -37,7 +37,7 @@ export default FooterBar;
 
 function FooterBarItems({ item }: any) {
   const list = item.body.map((i: any, key: any) => (
-    <Link to={i.url}>{i.name}</Link>
+    <Link to={i.url} key={key}>{i.name}</Link>
   ));
 
   return (

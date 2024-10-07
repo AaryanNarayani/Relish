@@ -1,6 +1,6 @@
 function NotFoundPage() {
   return (
-    <div className="w-screen flex justify-center items-center h-[calc(100vh-100px)]">
+    <div className="w-full flex justify-center items-center h-[calc(100vh-60px)]">
       <div>
         <div className="flex items-center">
           <h1 className="text-[12rem]">4</h1>

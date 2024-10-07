@@ -3,12 +3,15 @@ import { Mail } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { Spinner } from "../../components/ui/Spinner";
 
 function UserPhoneLoginPage() {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
   });
+
+  const [locked, setlocked] = useState(false);
 
   const navigate = useNavigate();
 
@@ -21,33 +24,37 @@ function UserPhoneLoginPage() {
   };
 
   const handleSubmit = async () => {
-
+    setlocked(true);
     try {
-         const response = await axios.post('http://localhost:8080/api/v1/auth/register/phone',{
-            name:formData.name,
-            phone:formData.phone,
-         },{});
+      const response = await axios.post(
+        "http://localhost:8080/api/v1/auth/register/phone",
+        {
+          name: formData.name,
+          phone: formData.phone,
+        },
+        {}
+      );
 
-         toast.success('Done Bro go next')
-         console.log(response.data)
-         navigate(`/user/login/otp?name=${formData.name}&phone=${formData.phone}`)
-    } catch (error : any) {
-        toast.error(error.response.data.message)
-        console.log('Could Not Login:',error.messgae)
+      toast.success("Done Bro go next");
+      console.log(response.data);
+      navigate(`/user/login/otp?name=${formData.name}&phone=${formData.phone}`);
+    } catch (error: any) {
+      setlocked(false);
+      toast.error(error.response.data.message);
+      console.log("Could Not Login:", error.messgae);
     }
-
-    
-    
-  }
+  };
 
   function handleGoogleAuth() {
     window.location.href = "http://localhost:8080/api/v1/auth/google";
   }
 
   return (
-    <div className="h-[calc(100vh-100px)] w-screen flex justify-center items-center">
+    <div className="h-[calc(100vh-60px)] w-full flex justify-center items-center">
       <div className="w-[450px] h-fit bg-white rounded p-8 flex flex-col gap-4 text-[--secondary]">
-        <h1 className="text-3xl border-b border-[--primary] pb-3 mb-3">Login</h1>
+        <h1 className="text-3xl border-b border-[--primary] pb-3 mb-3">
+          Login
+        </h1>
         <div className="w-full flex flex-col ">
           <label htmlFor="">Full Name</label>
           <input
@@ -55,26 +62,34 @@ function UserPhoneLoginPage() {
             className="border border-[--line] p-2 rounded focus:outline-none"
             placeholder="Name"
             value={formData.name}
-            name='name'
+            name="name"
             onChange={handleInputChange}
           />
         </div>
         <div className="w-full flex flex-col">
           <label htmlFor="">Phone no</label>
           <div className="w-full flex justify-between items-center border border-[--line] rounded  gap-3">
-            <p className="flex justify-center items-center px-3 border-r border-[--secondary]">+91</p>
+            <p className="flex justify-center items-center px-3 border-r border-[--secondary]">
+              +91
+            </p>
             <input
               type="text"
               className=" p-2 w-[85%] focus:outline-none"
               value={formData.phone}
-                name='phone'
+              name="phone"
               placeholder="Phone"
               onChange={handleInputChange}
             />
           </div>
         </div>
-        <button className="bg-[--primary] rounded-full p-2 w-full " onClick={handleSubmit}>
-          Send Otp
+        <button
+          className={`bg-[--primary] rounded-full p-3 w-full ${
+            locked && "cursor-not-allowed"
+          }`}
+          onClick={handleSubmit}
+          disabled={locked}
+        >
+          {locked ? <Spinner /> : "Send Otp"}
         </button>
         <div className="Or relative w-full h-fit">
           <hr className="border border-[--primary]  opacity-40" />
@@ -82,7 +97,10 @@ function UserPhoneLoginPage() {
             OR
           </p>
         </div>
-        <Link to = '/user/register' className="bg-[--trinary] rounded-full p-2 w-full flex justify-center items-center gap-4 ">
+        <Link
+          to="/user/register"
+          className="bg-[--trinary] rounded-full p-2 w-full flex justify-center items-center gap-4 "
+        >
           <Mail className="text-[--primary]" />
           Login Using Email
         </Link>
@@ -95,7 +113,7 @@ function UserPhoneLoginPage() {
         </button>
         <hr className="border border-[--primary]  opacity-40" />
         <div className="flex ">
-          <p>New &nbsp; ? &nbsp;</p>
+          <p>New&nbsp;?&nbsp;</p>
           <Link to="/user/register" className="text-[--primary]">
             Sign Up
           </Link>
