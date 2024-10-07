@@ -111,7 +111,7 @@ function SearchPage() {
   };
 
   return (
-    <div className="flex flex-col w-screen items-center gap-4 p-4 ">
+    <div className="flex flex-col w-full items-center gap-4 p-4 ">
       <SearchBar />
       <div className="flex gap-6 flex-wrap justify-center w-4/5">
         {filteredResults.length > 0 ? (

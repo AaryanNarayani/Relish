@@ -3,6 +3,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import axios from "axios";
+import { Spinner } from "../../components/ui/Spinner";
 
 type FormData = {
   name: string;
@@ -30,7 +31,7 @@ function UserRegistrationPage() {
   });
 
   const navigate = useNavigate();
-
+  const [isLocked, setIsLocked] = useState(false);
   const [error, setError] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,6 +54,7 @@ function UserRegistrationPage() {
   };
 
   const postUserDetails = async () => {
+    setIsLocked(true);
     if (checkPassword()) {
       try {
         const result = await axios.post(
@@ -67,7 +69,7 @@ function UserRegistrationPage() {
         console.log(result.data);
         toast.success("Registered successfully");
         if (result.data.token) {
-          navigate("/register/success");
+          navigate("/find");
           localStorage.setItem("token", result.data.token);
         } else {
           throw Error("Failed to get the token");
@@ -77,6 +79,7 @@ function UserRegistrationPage() {
         console.error("Could not create user:", e.response.data.message);
       }
     } else {
+      setIsLocked(false);
       setError("Passowrd not match bitch");
       console.log(error);
     }
@@ -87,7 +90,7 @@ function UserRegistrationPage() {
   }
 
   return (
-    <div className="flex justify-center items-center h-[calc(100vh-100px)] rounded">
+    <div className="flex justify-center items-center h-[calc(100vh-60px)] rounded">
       <div className="w-[450px] bg-white px-10 py-8 flex flex-col gap-3">
         <h1 className="text-2xl border-b border-[--primary] pb-4 mb-2">
           Sign Up
@@ -169,8 +172,9 @@ function UserRegistrationPage() {
           <button
             className="w-full mt-2 h-12 bg-[--primary] p-2 rounded-full duration-300 border border-[--primary] hover:bg-white text-[--secondary] hover:text-[--primary]"
             onClick={postUserDetails}
+            disabled={isLocked}
           >
-            Sign up
+            {isLocked ? <Spinner/> :  'Sign up' }
           </button>
           <button
             className="flex mt-4 w-full h-12 bg-[--trinary] rounded-full px-1 py-2 text-[--secondary]  gap-4 items-center justify-center"

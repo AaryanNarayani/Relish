@@ -3,6 +3,7 @@ import { Phone, X } from "lucide-react";
 import {Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import {Link } from "react-router-dom";
+import { Spinner } from "../../components/ui/Spinner";
 
 
 type FormData = {
@@ -19,6 +20,7 @@ function UserLoginPage() {
   });
 
   const [display, setDisplay] = useState(true);
+  const [isLocked, setIsLocked] = useState(false);
 
 
   // const [display,setDisplay] = useState<DisplayState>(false);
@@ -37,7 +39,7 @@ function UserLoginPage() {
   }
 
   return (
-  <div className="w-full   flex justify-center items-center h-[calc(100vh-100px)]">
+  <div className="w-full flex justify-center items-center h-[calc(100vh-60px)]">
     <div className="w-[450px] h-fit bg-white rounded flex flex-col px-8 py-10 gap-5">
         <div 
           className="flex flex-row items-center justify-between">
@@ -83,7 +85,7 @@ function UserLoginPage() {
         <button className="w-full h-fit bg-[--primary] border border-[--primary] rounded-full px-1 py-2 text-[--secondary]  hover:bg-white hover:text-[--primary] hover:border-[--primary]"
                 onClick={handleSubmit}
         >
-            LOGIN
+            {isLocked ? <Spinner/> : 'LOGIN' }
         </button>
         <div className="Or relative w-full h-fit">
           <hr className="border border-[--primary]  opacity-40"/>

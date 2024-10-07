@@ -1,4 +1,13 @@
+import { useState } from "react";
+
 function MobileAppBar() {
+
+    const [email, setEmail] = useState('');
+
+    const handleSubmit = async () => {
+        console.log(email)
+    }
+
   return (
     <div className=" flex justify-center w-[1440px] gap-20 p-10 ">
       <img src="/home/mobile-app.svg" alt="Bc kaam kar" className="h-[450px] w-fit" />
@@ -7,11 +16,13 @@ function MobileAppBar() {
         <p className="w-full mb-5">App is Under Progress</p>
         <div className="flex gap-2 w-full">
           <input
-            type="text"
+            type="email"
             placeholder="Email"
+            value={email}
             className="focus:outline-none px-4 rounded border border-[--line] w-1/2"
+            onChange={(e)=>{setEmail(e.target.value)}}
           />
-          <button className="bg-[--primary] px-4 py-2 rounded">Get Notified</button>
+          <button className="bg-[--primary] px-4 py-2 rounded" onClick={handleSubmit}>Get Notified</button>
         </div>
       </div>
     </div>

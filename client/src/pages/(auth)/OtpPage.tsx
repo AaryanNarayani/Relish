@@ -94,7 +94,7 @@ function OtpPage() {
   }, [timer]);
 
   return (
-    <div className="h-[calc(100vh-100px)] w-full flex justify-center items-center text-[--secondary]">
+    <div className="h-[calc(100vh-80px)] w-full flex justify-center items-center text-[--secondary]">
       <div className="bg-white w-full max-w-md p-8 rounded-lg shadow-md flex flex-col items-center gap-2">
         <h1 className="text-3xl font-bold">Verify Phone</h1>
         <p className="text-gray-600 mb-3">Code has been sent to {phone}</p>
