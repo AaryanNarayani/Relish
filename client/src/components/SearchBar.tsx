@@ -23,22 +23,22 @@ function SearchBar(){
   }, []);
 
   return (
-    <div className="w-[30rem] bg-white h-10 rounded-full flex items-center pr-4">
-      <div className="flex gap-4 text-[--secondary] border-r border-[--secondary] py-4 w-1/3 relative items-center h-full">
+    <div className="w-[35rem] bg-white h-12 rounded-full flex items-center pr-4">
+      <div className="flex gap-4 text-[--secondary] py-4 w-1/3 relative items-center h-full">
         <button 
-          className={`absolute left-0 h-full px-4 transition-all duration-300 ${isSelected === 'dish' ? 'font-bold bg-[--primary] rounded-full' : ''}`} 
+          className={`absolute left-0 h-full px-5 transition-all duration-300 ${isSelected === 'dish' ? 'font-bold bg-[--primary] rounded-full' : ''}`} 
           onClick={() => setIsSelected('dish')}
         >
-          Dish
+          DISH
         </button>
         <button 
-          className={`absolute right-1 h-full px-4 transition-all duration-300 ${isSelected === 'resto' ? 'font-bold bg-[--primary] rounded-full ' : ''}`} 
+          className={`absolute right-1 h-full px-5 transition-all duration-300 ${isSelected === 'resto' ? 'font-bold bg-[--primary] rounded-full ' : ''}`} 
           onClick={() => setIsSelected('resto')}
         >
-          Resto
+          RESTO
         </button>
       </div>
-      <div className="flex justify-between w-3/4 pl-4">
+      <div className="flex justify-between w-3/4 pl-4 border-l border-[--secondary]">
         <input 
           type="text" 
           className="w-full focus:outline-none border-0 pl-2" 

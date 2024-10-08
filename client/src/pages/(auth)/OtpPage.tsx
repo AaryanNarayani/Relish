@@ -45,6 +45,7 @@ function OtpPage() {
             otp:fullCode,
         })
         localStorage.setItem('token',res.data.token)
+        toast.success('Login Successfull');
         navigate(res.data.token ? '/' : '/error')
         setCode(Array(4).fill(''))
       } catch (error : any) {

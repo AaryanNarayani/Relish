@@ -11,12 +11,12 @@ const nextBiteItems: NextBiteItemType[] = [{
 },
 {
   name: 'Dine in',
-  imgUrl: "/search/dishes/sushi-tumbnail.png",
+  imgUrl: "/home/nextBite/dine-in.png",
   desc: `Chill at home, your meal's on its way!`
 },
 {
   name: 'Trending',
-  imgUrl: "/search/dishes/tonkotsu-tumbnail.png",
+  imgUrl: "/home/nextBite/trending.png",
   desc: `Chill at home, your meal's on its way!`
 }]
 

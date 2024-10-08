@@ -1,7 +1,9 @@
-import AccordionUsage from "../components/HomeAccordion";
+import HomeAccordion from "../components/HomeAccordion";
 import MobileAppBar from "../components/MobileAppBar";
 import NextBite from "../components/NextBite";
 import SearchBar from "../components/SearchBar";
+
+
 
 function HomePage() {
   return (
@@ -11,11 +13,11 @@ function HomePage() {
           <img
             src="/home/main.png"
             alt="Background"
-            className="absolute w-96 h-96 left-1/2 top-1/2  -translate-x-1/2 -translate-y-36 object-cover"
+            className="absolute w-[30rem] h-fit left-1/2 top-1/2 -translate-x-1/2 -translate-y-48 object-cover"
           />
           <div className="relative z-10 flex flex-col items-center -translate-y-1/2 ">
-            <h1 className="text-7xl text-[--secondary]">RELISH</h1>
-            <p className="mt-2 mb-4">
+            <h1 className="text-8xl text-[--secondary]">RELISH</h1>
+            <p className="mt-2 mb-4 text-xl">
               Life is a combination of magic and pasta.
             </p>
             <SearchBar />
@@ -34,7 +36,8 @@ function HomePage() {
         <MobileAppBar />
       </div>
       <div className="w-full justify-center flex">
-        <AccordionUsage/>
+          <HomeAccordion />
+
       </div>
     </div>
   );
