@@ -122,7 +122,7 @@ function SearchPage() {
           <p>No results found. Try a different search term.</p>
         )}
       </div>
-      <button className="fixed bottom-10 right-10 bg-[--primary] p-4 rounded-full text-white hover:bg-opacity-90 transition-colors duration-200">
+      <button className="fixed bottom-10 right-10 bg-[--secondary] p-4 rounded-full text-white hover:bg-opacity-90 transition-colors duration-200">
         <ShoppingCart />
       </button>
     </div>

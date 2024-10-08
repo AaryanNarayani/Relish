@@ -43,7 +43,7 @@ function FooterBarItems({ item }: any) {
   return (
     <div>
       <h1 className="text-2xl font-semibold mb-3" >{item.title}</h1>
-      <ul className="flex flex-col">{list}</ul>
+      <ul className="flex flex-col font-[manrope]">{list}</ul>
     </div>
   );
 }
