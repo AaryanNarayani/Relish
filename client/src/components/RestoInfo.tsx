@@ -26,16 +26,16 @@ export default function RestoInfo({
 }: RestoInfoProps) {
   return (
     <>
-      <div className="w-[525px] h-fit bg-white rounded-2xl p-14 pb-7 flex flex-col font-[relative]">
-        <div className="font-[relative] flex gap-4 items-center">
+      <div className="w-[525px] h-fit bg-white rounded-2xl p-14 pb-7 flex flex-col font-[--relative] text-[--secondary]">
+        <div className="font-[--relative] flex gap-4 items-center">
           <h1 className="text-5xl">{Name}</h1>
           <div className="text-xl ml-4">
-            <span className="text-[--primary]">★</span>
+            <span className="text-[--primary] text-xl">★</span>
             <span> 5.0</span>
           </div>
         </div>
         <div className="flex flex-col">
-          <div className="text-[--secondary] opacity-90 text-md mt-5">
+          <div className=" opacity-90 text-md mt-5">
             {Desc}
           </div>
           <div className="w-full mt-5">
@@ -46,7 +46,7 @@ export default function RestoInfo({
             <div className="flex text-[--secondary] opacity-90">2.0 km</div>
           </div>
           <div className="mt-2 flex items-center">
-            <div className="flex text-green-500 text-xl">Open Now</div>
+            <div className="flex text-[--veg] text-xl">Open Now</div>
             <div className="text-[--secondary] opacity-90 ml-2 mr-2">/</div>
             <div className="text-[--secondary] opacity-90">{timings}</div>
           </div>
@@ -70,7 +70,7 @@ export default function RestoInfo({
           <div className="w-full mt-5">
             <hr className="w-full border border-[--primary] opacity-40" />
           </div>
-          <div className="flex gap-4 mt-2 items-center">
+          <div className="flex gap-4 mt-4 items-center">
             <div>
                 <Avatar src={profile}/>
             </div>
@@ -78,7 +78,7 @@ export default function RestoInfo({
                 <div className="text-xl">
                     {owner}
                 </div>
-                <div className="text-md text-[--secondary] opacity-90">
+                <div className="text-sm text-[--secondary] opacity-90">
                     OWNER
                 </div>
             </div>

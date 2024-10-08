@@ -51,7 +51,7 @@ export const Overview = () => {
                     owner="Sai Kumar"
                 />
                 </div>
-                <div className="ml-2 mt-3">
+                <div className=" mt-3 ">
                     <Cuisines Cuisines={[
                         "North Indian",
                         "South Indian",

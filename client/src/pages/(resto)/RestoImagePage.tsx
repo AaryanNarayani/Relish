@@ -3,8 +3,13 @@ import { RestoNav } from "../../components/ui/RestoNav";
 import RestoInfo from "../../components/RestoInfo";
 import Cuisines from "../../components/Cuisines";
 import RestoImages from "../../components/RestoImages";
+import Pagination from "../../components/ui/Pagination";
+import { useState } from "react";
 
 export default function RestoImagePage () {
+
+  const [currentPage, setCurrentPage] = useState(1);
+
   const links = [
     {
       title: "Overview",
@@ -32,6 +37,15 @@ export default function RestoImagePage () {
       href: "/resto/order",
     },
   ];
+
+  const onPageChange = (page : number , pageCount : number) => {
+    if( page > 0 && page <= pageCount)
+    {
+      console.log(page)
+      setCurrentPage(page)
+    }
+  }
+
   return (
     <>
       <div>
@@ -71,8 +85,11 @@ export default function RestoImagePage () {
             items={links}
             />
         </div>
-        <div className="flex justify-center items-center h-80">
-            // Resto Images Section
+        <div className="flex items-center h-80 w-full my-8 flex-col">
+            <div className="w-[1330px] bg-[#1E1E1E] rounded-xl h-96">
+                
+            </div>
+            <Pagination itemCount = { 1000 } currentPage={currentPage} onPageChange={onPageChange}/>
         </div>
       </div>
     </>

@@ -50,7 +50,7 @@ const FloatingDockMobile = ({
                 initial={{ opacity: 0, y: 10 }}
                 animate={{
                   opacity: 1,
-                  y: 0,
+                  y:0,
                 }}
                 exit={{
                   opacity: 0,
@@ -97,7 +97,7 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseY.set(e.pageY)}
       onMouseLeave={() => mouseY.set(Infinity)}
       className={cn(
-        "flex w-fit p-2 h-16 gap-1 items-center rounded-3xl bg-[#313131] backdrop-blur-sm overflow-visible",
+        "flex w-fit p-2 h-16 gap-1 items-center rounded-full bg-[#313131] backdrop-blur-sm overflow-visible",
         className
       )}
     >
@@ -172,9 +172,9 @@ function IconContainer({
         <AnimatePresence>
           {hovered && (
             <motion.div
-              initial={{ opacity: 0, x: 10, y: "-50%" }}
-              animate={{ opacity: 1, x: 0, y: "-50%" }}
-              exit={{ opacity: 0, x: 2, y: "-50%" }}
+              initial={{ opacity: 0, x: "-95px", y: "-50%" }}
+              animate={{ opacity: 1, x: "-95px", y: "40px" }}
+              exit={{ opacity: 0, x: "-95px", y: "-50%" }}
               className="px-2 py-0.5 whitespace-pre rounded-md bg-[--secondary] border  dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute top-1/2 -translate-y-1/2 -right-24 w-fit text-xs"
             >
               {title}
