@@ -195,14 +195,14 @@ router.post('/register/phone', otpRequestLimiter , async (req: OtpRequest, res: 
     const phoneNum = payload.phone as string;
     let result = await axios.post('https://textflow.me/api/send-sms', {
       phone_number: `+91 ${phoneNum}`,
-      text: `Your OTP for registration is ${otp}`,
+      text: `Your Relish OTP for registration is ${otp}`,
     },{
       headers: {
         authorization: `Bearer ${process.env.SMS_API_KEY}`,
       }
     });
     if(result.status == 200){
-      RealOTP = `Your OTP for registration is ${otp}`;  
+      RealOTP = `Your Relish OTP for registration is ${otp}`;  
     }
     if (result.status !== 200) {
       console.log("Failed to send message");
@@ -231,10 +231,10 @@ router.post('/verify/phone', phoneVerifyLimiter, async (req: OtpRequest, res: Re
     const phoneNum = `+91 ${payload.phone}`;
     console.log("Phone number:", phoneNum);
     const otp = payload.otp as string;
-    const AsliOtp = `Your OTP for registration is ${otp}`;
+    const AsliOtp = `Your Relish OTP for registration is ${otp}`;
     if (RealOTP !== AsliOtp) {
       console.log(RealOTP, AsliOtp);
-      return res.status(401).json({ message: "Invalid OTP try the whole process after 5 mins" });
+      return res.status(401).json({ message: "Invalid OTP" });
     }
     console.log("OTP verified successfully");
     const user = await prisma.user.upsert({

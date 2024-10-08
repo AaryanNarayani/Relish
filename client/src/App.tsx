@@ -20,6 +20,11 @@ import NotFoundPage from "./pages/NotFoundPage";
 import UserPhoneLoginPage from "./pages/(auth)/UserPhoneLoginPage";
 import OtpPage from "./pages/(auth)/OtpPage";
 import FooterBar from "./components/FooterBar";
+import { Overview } from "./pages/(resto)/Overview";
+import Reviews from "./pages/(resto)/Reviews";
+import RestoOrders from "./pages/(resto)/RestoOrders";
+import RestoImages from "./components/RestoImages";
+import RestoImagePage from "./pages/(resto)/RestoImagePage";
 
 
 function App() {
@@ -53,10 +58,12 @@ function App() {
         <Route path="/user/register" element={<UserRegistrationPage />} />
         <Route path="/admin" element={<HomePage />} />
         <Route path="/find" element={<SearchPage />} />
+        <Route path="/resto/overview" element={<Overview/>} />
+        <Route path="/resto/reviews" element={<Reviews />} />
+        <Route path="/resto/images" element={<RestoImagePage />} />
+        <Route path="/resto/order" element={<RestoOrders />} />
         <Route path="*" element={<NotFoundPage />} />
-
       </Routes>
-
       <FooterBar/>
     </Router>
    
