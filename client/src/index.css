@@ -19,11 +19,25 @@
   --nonVeg: #d32f2f;
   --line: rgba(93, 64, 55, 0.2);
   --relative: relative-faux, serif;
-  --manrope: "Manrope", sans-serif;
+  /* --manrope: Manrope, sans-serif; */
 }
 
 html,
 body {
   background-color: var(--trinary);
   font-family: var(--relative);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: var(--meta) ;
+  border-radius: 200px;
+  width:2px;
 }
