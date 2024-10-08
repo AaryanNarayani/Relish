@@ -1,4 +1,3 @@
-import { Description } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 
 interface ReviewCardProps{
