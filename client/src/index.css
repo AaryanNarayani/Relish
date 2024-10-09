@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Manrope:wght@200..800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,7 +14,7 @@
 :root {
   --primary: #feba42;
   --secondary: #5d4037;
-  --trinary: #fff8e1;
+  --ternary: #fff8e1;
   --meta: #ff9800;
   --veg: #7cb342;
   --nonVeg: #d32f2f;
@@ -24,7 +25,7 @@
 
 html,
 body {
-  background-color: var(--trinary);
+  background-color: var(--ternary);
   font-family: var(--relative);
 }
 
