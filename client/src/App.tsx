@@ -1,21 +1,12 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-
 import NavBar from "./components/NavBar";
 import SearchPage from "./pages/SearchPage";
 import UserRegistrationPage from "./pages/(auth)/UserRegistrationPage";
-
 import UserLoginPage from "./pages/(auth)/UserLoginPage";
-
 import { Toaster } from "sonner";
-import {
-  CircleAlert,
-  CircleCheck,
-  CircleX,
-  Info,
-  Loader,
-} from "lucide-react";
+import { CircleAlert , CircleCheck , CircleX , Info , Loader } from "lucide-react";
 import NotFoundPage from "./pages/NotFoundPage";
 import UserPhoneLoginPage from "./pages/(auth)/UserPhoneLoginPage";
 import OtpPage from "./pages/(auth)/OtpPage";
@@ -23,7 +14,6 @@ import FooterBar from "./components/FooterBar";
 import { Overview } from "./pages/(resto)/Overview";
 import Reviews from "./pages/(resto)/Reviews";
 import RestoOrders from "./pages/(resto)/RestoOrders";
-import RestoImages from "./components/RestoImages";
 import RestoImagePage from "./pages/(resto)/RestoImagePage";
 
 
@@ -58,6 +48,7 @@ function App() {
         <Route path="/user/register" element={<UserRegistrationPage />} />
         <Route path="/admin" element={<HomePage />} />
         <Route path="/find" element={<SearchPage />} />
+        <Route path="/resto" element={<Overview />} />
         <Route path="/resto/overview" element={<Overview/>} />
         <Route path="/resto/reviews" element={<Reviews />} />
         <Route path="/resto/images" element={<RestoImagePage />} />
