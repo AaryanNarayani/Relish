@@ -13,9 +13,11 @@
 
 :root {
   --primary: #feba42;
+  --primary-50: hsla(38, 99%, 63%, 0.3);
   --secondary: #5d4037;
   --ternary: #fff8e1;
   --meta: #ff9800;
+  --true: rgba(124, 179, 66, 0.2);
   --veg: #7cb342;
   --nonVeg: #d32f2f;
   --line: rgba(93, 64, 55, 0.2);

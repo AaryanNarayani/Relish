@@ -177,7 +177,7 @@ function UserRegistrationPage() {
             {isLocked ? <Spinner/> :  'Sign up' }
           </button>
           <button
-            className="flex mt-4 w-full h-12 bg-[--trinary] rounded-full px-1 py-2 text-[--secondary]  gap-4 items-center justify-center"
+            className="flex mt-4 w-full h-12 bg-[--ternary] rounded-full px-1 py-2 text-[--secondary]  gap-4 items-center justify-center"
             onClick={handleGoogleAuth}
           >
             <img src="/googleIcon.png" className="h-6 w-6"></img> Sign up with
