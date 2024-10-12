@@ -15,6 +15,7 @@ import { Overview } from "./pages/(resto)/Overview";
 import Reviews from "./pages/(resto)/Reviews";
 import RestoOrders from "./pages/(resto)/RestoOrders";
 import RestoImagePage from "./pages/(resto)/RestoImagePage";
+import Dashboard from "./pages/(admin)/Dashboard";
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
         <Route path="/resto/reviews" element={<Reviews />} />
         <Route path="/resto/images" element={<RestoImagePage />} />
         <Route path="/resto/order" element={<RestoOrders />} />
+        <Route path="/admin/hotel/dashboard" element={<Dashboard />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <FooterBar/>

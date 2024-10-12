@@ -99,13 +99,13 @@ function UserPhoneLoginPage() {
         </div>
         <Link
           to="/user/register"
-          className="bg-[--trinary] rounded-full p-2 w-full flex justify-center items-center gap-4 "
+          className="bg-[--ternary] rounded-full p-2 w-full flex justify-center items-center gap-4 "
         >
           <Mail className="text-[--primary]" />
           Login Using Email
         </Link>
         <button
-          className="flex w-full h-12 bg-[--trinary] rounded-full px-1 py-2 text-[--secondary]  gap-4 items-center justify-center"
+          className="flex w-full h-12 bg-[--ternary] rounded-full px-1 py-2 text-[--secondary]  gap-4 items-center justify-center"
           onClick={handleGoogleAuth}
         >
           <img src="/googleIcon.png" className="h-6 w-6"></img> Login with
