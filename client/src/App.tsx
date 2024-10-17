@@ -16,6 +16,8 @@ import Reviews from "./pages/(resto)/Reviews";
 import RestoOrders from "./pages/(resto)/RestoOrders";
 import RestoImagePage from "./pages/(resto)/RestoImagePage";
 import Dashboard from "./pages/(admin)/Dashboard";
+import AdminPage from "./pages/(admin)/AdminPage";
+import CartPage from "./pages/CartPage";
 
 
 function App() {
@@ -43,18 +45,31 @@ function App() {
       />
       <Routes>
         <Route path="/" element={<HomePage />} />
+
+        {/* User */}
         <Route path="/user/login" element={<UserLoginPage />} />
         <Route path="/user/login/phone" element={<UserPhoneLoginPage/>} />
         <Route path="/user/login/otp" element={<OtpPage/>} />
         <Route path="/user/register" element={<UserRegistrationPage />} />
-        <Route path="/admin" element={<HomePage />} />
+
+        {/* Search */}
         <Route path="/find" element={<SearchPage />} />
+
+        {/* Resto */}
         <Route path="/resto" element={<Overview />} />
         <Route path="/resto/overview" element={<Overview/>} />
         <Route path="/resto/reviews" element={<Reviews />} />
         <Route path="/resto/images" element={<RestoImagePage />} />
         <Route path="/resto/order" element={<RestoOrders />} />
+
+        {/* Admin */}
+        <Route path="/admin" element={<AdminPage />} />
         <Route path="/admin/hotel/dashboard" element={<Dashboard />} />
+
+        {/* Cart */}
+        <Route path='/cart' element={<CartPage/>}></Route>
+
+        {/* Not found */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <FooterBar/>
