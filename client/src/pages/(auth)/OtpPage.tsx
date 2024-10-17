@@ -82,7 +82,7 @@ function OtpPage() {
   }, [noOfResends]);
 
   useEffect(() => {
-    let interval : number;
+    let interval : NodeJS.Timeout;
     if (timer > 0) {
       interval = setInterval(() => {
         setTimer(prev => prev - 1);
