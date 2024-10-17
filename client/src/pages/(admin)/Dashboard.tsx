@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import {
-  BookText,
-  Images,
-  Pencil,
-  ShoppingBag,
-  Star,
-  X,
-} from "lucide-react";
+import { BookText, Images, Pencil, ShoppingBag, Star, X } from "lucide-react";
 import { AdminNav } from "../../components/ui/AdminNav";
 import { Link } from "react-router-dom";
+import {
+  AdminActiveOrderCard,
+  AdminRejectedOrderCard,
+} from "../../components/ui/AdminOrderCard";
+import AdminNewOrderCard from "../../components/ui/AdminOrderCard";
 
 type CuisineType = string;
-type OrderStatus = "all" | "active" | "rejected";
+type OrderStatus = "new" | "active" | "rejected";
 
 interface EditCuisineProps {
   editCuisine: boolean;
@@ -26,24 +24,103 @@ interface NavLink {
   href: string;
 }
 
+const orders = [
+  {
+    orderNo: 1,
+    orderDistance: 2.89,
+    status: 'new',
+    orderDetails: [
+      {
+        quantity: 2,
+        name: "Ramen",
+      },
+      {
+        quantity: 2,
+        name: "Ramen",
+      },
+      {
+        quantity: 2,
+        name: "Ramen",
+      },
+    ],
+  },
+  {
+    orderNo: 2,
+    orderDistance: 2.89,
+    status: 'active',
+    orderDetails: [
+      {
+        quantity: 2,
+        name: "Ramen",
+      },
+      {
+        quantity: 2,
+        name: "Ramen",
+      },
+      {
+        quantity: 2,
+        name: "Ramen",
+      },
+    ],
+  },
+  {
+    orderNo: 3,
+    orderDistance: 2.89,
+    status: 'new',
+    orderDetails: [
+      {
+        quantity: 2,
+        name: "Ramen",
+      },
+      {
+        quantity: 2,
+        name: "Ramen",
+      },
+      {
+        quantity: 2,
+        name: "Ramen",
+      },
+    ],
+  },
+  {
+    orderNo: 4,
+    orderDistance: 2.89,
+    status: 'rejected',
+    orderDetails: [
+      {
+        quantity: 2,
+        name: "Ramen",
+      },
+      {
+        quantity: 2,
+        name: "Ramen",
+      },
+      {
+        quantity: 2,
+        name: "Ramen",
+      },
+    ],
+  },
+];
+
 const EditCuisine: React.FC<EditCuisineProps> = ({
   editCuisine,
   setEditCuisine,
   cuisineList,
   setCuisineList,
 }) => {
-  const [cuisine, setCuisine] = useState('');
+  const [cuisine, setCuisine] = useState("");
 
   const handleAdd = () => {
-    if (cuisine.trim() !== '') {
-      setCuisineList(prevList => [...prevList, cuisine.trim()]);
-      setCuisine('');
+    if (cuisine.trim() !== "") {
+      setCuisineList((prevList) => [...prevList, cuisine.trim()]);
+      setCuisine("");
     }
-  }
+  };
 
   const handleRemove = (index: number) => {
-    setCuisineList(prevList => prevList.filter((_, i) => i !== index));
-  }
+    setCuisineList((prevList) => prevList.filter((_, i) => i !== index));
+  };
 
   return (
     <div className="pl-24 flex flex-col gap-5">
@@ -56,14 +133,14 @@ const EditCuisine: React.FC<EditCuisineProps> = ({
           <Pencil />
         </div>
         {editCuisine && (
-                <button
-                  type="submit"
-                  className="bg-[--veg] px-5 py-2 rounded-full select-none"
-                  onClick={()=>{}}
-                >
-                  Save
-                </button>
-              )}
+          <button
+            type="submit"
+            className="bg-[--true] px-5 py-2 rounded-full select-none"
+            onClick={() => {}}
+          >
+            Save
+          </button>
+        )}
       </div>
       {editCuisine && (
         <div className="flex gap-2 pl-4 ">
@@ -106,7 +183,7 @@ const EditCuisine: React.FC<EditCuisineProps> = ({
 };
 
 const Dashboard: React.FC = () => {
-  const [active, setActive] = useState<OrderStatus>("all");
+  const [active, setActive] = useState<OrderStatus>("new");
   const [editHotelDetails, setEditHotelDetails] = useState<boolean>(false);
   const [editCuisine, setEditCuisine] = useState<boolean>(false);
   const [cuisineList, setCuisineList] = useState<CuisineType[]>([
@@ -117,12 +194,12 @@ const Dashboard: React.FC = () => {
 
   const links: NavLink[] = [
     {
-      title: "Overview",
+      title: "DashBoard",
       icon: <BookText className="h-full w-full text-black" />,
-      href: "/resto/overview",
+      href: "/admin/hotel/dashboard",
     },
     {
-      title: "Reviews",
+      title: "Review",
       icon: <Star className="h-full w-full" />,
       href: "/resto/reviews",
     },
@@ -168,7 +245,7 @@ const Dashboard: React.FC = () => {
               {editHotelDetails && (
                 <button
                   type="submit"
-                  className="bg-[--veg] px-5 py-2 rounded-full select-none"
+                  className="bg-[--true] px-5 py-2 rounded-full select-none"
                   onClick={handleHotelDetailsSave}
                 >
                   Save
@@ -183,7 +260,9 @@ const Dashboard: React.FC = () => {
             >
               {["Name", "Short Description", "Location"].map((label) => (
                 <div key={label} className="flex flex-col">
-                  <label htmlFor={label} className="select-none">{label}</label>
+                  <label htmlFor={label} className="select-none">
+                    {label}
+                  </label>
                   <input
                     id={label}
                     type="text"
@@ -224,7 +303,7 @@ const Dashboard: React.FC = () => {
             ))}
           </div>
           <div className="flex justify-center gap-5">
-            {(["all", "active", "rejected"] as OrderStatus[]).map((status) => (
+            {(["new", "active", "rejected"] as OrderStatus[]).map((status) => (
               <button
                 key={status}
                 className={`${
@@ -232,11 +311,18 @@ const Dashboard: React.FC = () => {
                 } px-5 py-[0.35rem] rounded-lg`}
                 onClick={() => setActive(status)}
               >
-                {status === "all"
+                {status === "new"
                   ? "New Orders"
                   : status.charAt(0).toUpperCase() + status.slice(1)}
               </button>
             ))}
+          </div>
+          <div className="w-full flex flex-col items-center gap-2">
+            { orders.map((item)=>(
+                <div key={item.orderNo}>
+                  { item.status === active && ( item.status === 'new' ?  <AdminNewOrderCard/> : (item.status === 'active' ? <AdminActiveOrderCard/> : <AdminRejectedOrderCard />) )}
+                </div>
+            )) }
           </div>
         </div>
       </div>
