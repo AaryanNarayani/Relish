@@ -61,6 +61,23 @@ router.get("/", (req: Request, res: Response) => {
   res.send("Auth Route");
 });
 
+router.post('/verify',authMiddleware,(req:AuthRequest,res:Response)=>{
+try{
+  const id = req.userId;
+  if(!id){
+    console.log("Unauthorized",id);
+    return res.status(401).json({message:"Unauthorized"});
+  }
+  return res.status(200).json({
+    ok:true,
+    message:"Authorized"
+  });
+}catch(e){
+  console.error("Error during verifying user:",e);
+  return res.status(500).json({message:"Internal Server Error"});
+}
+})
+
 router.get("/login/success", async (req: CustomRequest, res: Response) => {
   if (req.user) {
     try {

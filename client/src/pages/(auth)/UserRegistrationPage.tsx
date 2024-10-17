@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import axios from "axios";
 import { Spinner } from "../../components/ui/Spinner";
+import { BASE_URL } from "../../lib/vars";
 
 type FormData = {
   name: string;
@@ -58,7 +59,7 @@ function UserRegistrationPage() {
     if (checkPassword()) {
       try {
         const result = await axios.post(
-          "http://localhost:8080/api/v1/auth/register",
+          `${BASE_URL}/api/v1/auth/register`,
           {
             name: formData.name,
             email: formData.email,
@@ -86,7 +87,7 @@ function UserRegistrationPage() {
   };
 
   function handleGoogleAuth() {
-    window.location.href = "http://localhost:8080/api/v1/auth/google";
+    window.location.href = `${BASE_URL}/api/v1/auth/google`;
   }
 
   return (

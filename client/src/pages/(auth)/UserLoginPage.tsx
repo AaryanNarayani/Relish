@@ -4,6 +4,7 @@ import {Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import {Link } from "react-router-dom";
 import { Spinner } from "../../components/ui/Spinner";
+import { BASE_URL } from "../../lib/vars";
 
 
 type FormData = {
@@ -12,8 +13,6 @@ type FormData = {
 }
 
 function UserLoginPage() {
-
-
   const [formData , setFormData] = useState<FormData>({
     email : "",
     password : ""
@@ -35,7 +34,7 @@ function UserLoginPage() {
   }
 
   function handleGoogleAuth() {
-    window.location.href = "http://localhost:8080/api/v1/auth/google";
+    window.location.href = `${BASE_URL}/api/v1/auth/google`;
   }
 
   return (
