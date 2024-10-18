@@ -1,4 +1,9 @@
-import { ArrowLeft, ArrowRight, BookText, Images, MoveLeft, MoveRight, ShoppingBag, Star } from "lucide-react";
+import {
+  BookText,
+  Images,
+  ShoppingBag,
+  Star,
+} from "lucide-react";
 import { RestoNav } from "../../components/ui/RestoNav";
 import RestoInfo from "../../components/RestoInfo";
 import Cuisines from "../../components/Cuisines";
@@ -15,14 +20,13 @@ interface bestSellers {
   veg: boolean;
 }
 
-type ScrollContainerRef = React.RefObject<HTMLDivElement>;
 type ScrollFunction = (scrollOffset: number) => void;
 
 export const Overview = () => {
-  const scrollRef = useRef<ScrollContainerRef>(null);
-  const scroll : ScrollFunction = (scrollOffset) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const scroll: ScrollFunction = (scrollOffset) => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: scrollOffset, behavior: 'smooth' });
+      scrollRef.current.scrollBy({ left: scrollOffset, behavior: "smooth" });
     }
   };
   const bestSellers: bestSellers[] = [
@@ -98,7 +102,7 @@ export const Overview = () => {
       icon: <ShoppingBag />,
       href: "/resto/order",
     },
-  ]
+  ];
   return (
     <>
       <div>
@@ -139,49 +143,48 @@ export const Overview = () => {
           <RestoNav items={links} />
         </div>
         <div className="flex flex-col justify-center items-center h-fit p-12 mb-40">
-        <div className="flex flex-col justify-center items-center h-fit p-12">
-          {/* About Section*/}
-          <div className="h-48 p-5 w-[80%] bg-white rounded-lg flex flex-col justify-center items-center">
-            <div className="flex justify-center">
-              <h1 className="font-bold text-3xl">About</h1>
-            </div>
-            <div className="flex justify-center text-lg mt-4 text-center font-light text-black/70">
-              {hotelLongDesc}
+          <div className="flex flex-col justify-center items-center h-fit p-12">
+            {/* About Section*/}
+            <div className="h-48 p-5 w-[80%] bg-white rounded-lg flex flex-col justify-center items-center">
+              <div className="flex justify-center">
+                <h1 className="font-bold text-3xl">About</h1>
+              </div>
+              <div className="flex justify-center text-lg mt-4 text-center font-light text-black/70">
+                {hotelLongDesc}
+              </div>
             </div>
           </div>
-        </div>
-        {/* Best Sellers Section*/}
-        <div className="flex flex-col justify-center w-[80%] p-10 pt-0">
+          {/* Best Sellers Section*/}
+          <div className="flex flex-col justify-center w-[80%] p-10 pt-0">
             <div className="mt-5 flex justify-start">
               <h1 className="font-semibold text-2xl">Best Sellers</h1>
             </div>
-            <div ref={scrollRef} className="flex mt-5 gap-2 overflow-x-scroll no-scroller">
-          {bestSellers.map((item,index)=>{
-            return(
-              <div>
-                <SearchCard key={index} {...item} />
-              </div>
-            )
-          })}
-          </div>
-          <div className="flex">
-            <div>
-              <button
-                onClick={() => scroll(-200)}
-              >
-                <img src="/left.png" className="h-7 w-7" alt="left" />
-              </button>
-          </div>
-          <div>
-            <button
-              onClick={() => scroll(200)}
+            <div
+              ref={scrollRef}
+              className="flex mt-5 gap-2 overflow-x-scroll no-scroller"
             >
-              <img src="/right.png" className="h-7 w-7" alt="right" />
-            </button>
+              {bestSellers.map((item, index) => {
+                return (
+                  <div>
+                    <SearchCard key={index} {...item} />
+                  </div>
+                );
+              })}
+            </div>
+            <div className="flex">
+              <div>
+                <button onClick={() => scroll(-200)}>
+                  <img src="/left.png" className="h-7 w-7" alt="left" />
+                </button>
+              </div>
+              <div>
+                <button onClick={() => scroll(200)}>
+                  <img src="/right.png" className="h-7 w-7" alt="right" />
+                </button>
+              </div>
+            </div>
           </div>
-          </div>
-          </div>
-      </div>
+        </div>
       </div>
     </>
   );
