@@ -1,9 +1,10 @@
-import { BookText, Images, ShoppingBag, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookText, Images, MoveLeft, MoveRight, ShoppingBag, Star } from "lucide-react";
 import { RestoNav } from "../../components/ui/RestoNav";
 import RestoInfo from "../../components/RestoInfo";
 import Cuisines from "../../components/Cuisines";
 import RestoImages from "../../components/RestoImages";
 import SearchCard from "../../components/SearchCard";
+import { useRef } from "react";
 
 interface bestSellers {
   dish: string;
@@ -14,8 +15,16 @@ interface bestSellers {
   veg: boolean;
 }
 
+type ScrollContainerRef = React.RefObject<HTMLDivElement>;
+type ScrollFunction = (scrollOffset: number) => void;
 
 export const Overview = () => {
+  const scrollRef = useRef<ScrollContainerRef>(null);
+  const scroll : ScrollFunction = (scrollOffset) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: scrollOffset, behavior: 'smooth' });
+    }
+  };
   const bestSellers: bestSellers[] = [
     {
       dish: "Tonkotsu Ramen",
@@ -146,7 +155,7 @@ export const Overview = () => {
             <div className="mt-5 flex justify-start">
               <h1 className="font-semibold text-2xl">Best Sellers</h1>
             </div>
-            <div className="flex mt-5 gap-2 overflow-x-scroll">
+            <div ref={scrollRef} className="flex mt-5 gap-2 overflow-x-scroll no-scroller">
           {bestSellers.map((item,index)=>{
             return(
               <div>
@@ -154,6 +163,22 @@ export const Overview = () => {
               </div>
             )
           })}
+          </div>
+          <div className="flex">
+            <div>
+              <button
+                onClick={() => scroll(-200)}
+              >
+                <img src="/left.png" className="h-7 w-7" alt="left" />
+              </button>
+          </div>
+          <div>
+            <button
+              onClick={() => scroll(200)}
+            >
+              <img src="/right.png" className="h-7 w-7" alt="right" />
+            </button>
+          </div>
           </div>
           </div>
       </div>

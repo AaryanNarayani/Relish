@@ -45,3 +45,7 @@ body {
   border-radius: 200px;
   width:2px;
 }
+
+.no-scroller::-webkit-scrollbar-thumb {
+  display: none;
+}
