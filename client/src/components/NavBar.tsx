@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const navItems = [
@@ -32,7 +33,8 @@ const loggedNavItems = [
 
 const version = "1.0";
 
-function NavBar({ isLogged }: { isLogged: boolean }) {
+function NavBar() {
+  const [isLogged, setIsLogged] = useState(false);
   const navItemsList = (isLogged ? loggedNavItems : navItems).map((item, key) => (
     <Link to={item.url} key={key}>
       {item.name}
