@@ -41,7 +41,7 @@ function SearchCard({ dish, desc, price, stars, url, veg }: SearchCardProps) {
           )}
         </div>
         <h1 className={` ${ veg ? 'text-[--veg]' : 'text-[--nonVeg]'}  font-bold`}>{dish}</h1>
-        <p className="text-xs font-[manrope]">{desc}</p>
+        <p className="text-xs font-[manrope] h-12 overflow-hidden">{desc}</p>
         <div className="flex justify-between mt-1">
           <p className="text-[--meta]">${price.toFixed(2)}</p>
           <p className="text-[--meta]">{('★'.repeat(stars)).padEnd(5, '☆')}</p>

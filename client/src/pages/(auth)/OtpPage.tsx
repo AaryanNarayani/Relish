@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { BASE_URL } from "../../lib/vars";
 
 function OtpPage() {
   const [code, setCode] = useState<string[]>(Array(4).fill(''));
@@ -39,7 +40,7 @@ function OtpPage() {
       console.log('Submitting code:', typeof(fullCode));
       console.log(phone)
       try {
-        const res = await axios.post('http://localhost:8080/api/v1/auth/verify/phone',{
+        const res = await axios.post(`${BASE_URL}/api/v1/auth/verify/phone`,{
             name,
             phone,
             otp:fullCode,
