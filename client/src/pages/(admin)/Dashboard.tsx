@@ -199,19 +199,19 @@ const Dashboard: React.FC = () => {
       href: "/admin/hotel/dashboard",
     },
     {
-      title: "Review",
+      title: "Menu",
       icon: <Star className="h-full w-full" />,
-      href: "/resto/reviews",
+      href: "/admin/hotel/menu",
     },
     {
       title: "Images",
       icon: <Images className="h-full w-full text-black" />,
-      href: "/resto/images",
+      href: "/admin/hotel/images",
     },
     {
-      title: "Order",
+      title: "Analytics",
       icon: <ShoppingBag />,
-      href: "/resto/order",
+      href: "/admin/hotel/analytics",
     },
   ];
 

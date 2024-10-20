@@ -18,6 +18,8 @@ import RestoImagePage from "./pages/(resto)/RestoImagePage";
 import Dashboard from "./pages/(admin)/Dashboard";
 import AdminPage from "./pages/(admin)/AdminPage";
 import CartPage from "./pages/CartPage";
+import Profile from "./pages/(user)/Profile";
+import Menu from "./pages/(admin)/Menu";
 
 
 function App() {
@@ -47,6 +49,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
         {/* User */}
+        <Route path="/user" element={<Profile />} />
         <Route path="/user/login" element={<UserLoginPage />} />
         <Route path="/user/login/phone" element={<UserPhoneLoginPage/>} />
         <Route path="/user/login/otp" element={<OtpPage/>} />
@@ -65,6 +68,7 @@ function App() {
         {/* Admin */}
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/admin/hotel/dashboard" element={<Dashboard />} />
+        <Route path="/admin/hotel/menu" element={<Menu />} />
 
         {/* Cart */}
         <Route path='/cart' element={<CartPage/>}></Route>
@@ -74,9 +78,6 @@ function App() {
       </Routes>
       <FooterBar/>
     </Router>
-    // <>
-    //   <AdminPage/>
-    // </>
    
   );
 }
