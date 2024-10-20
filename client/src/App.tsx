@@ -18,6 +18,7 @@ import RestoImagePage from "./pages/(resto)/RestoImagePage";
 import Dashboard from "./pages/(admin)/Dashboard";
 import AdminPage from "./pages/(admin)/AdminPage";
 import CartPage from "./pages/CartPage";
+import Analytics from "./pages/(admin)/Analytics";
 
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
         {/* Admin */}
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/admin/hotel/dashboard" element={<Dashboard />} />
+        <Route path="/admin/hotel/analytics" element={<Analytics />} />
 
         {/* Cart */}
         <Route path='/cart' element={<CartPage/>}></Route>
