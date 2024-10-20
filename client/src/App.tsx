@@ -20,7 +20,7 @@ import AdminPage from "./pages/(admin)/AdminPage";
 import CartPage from "./pages/CartPage";
 import Profile from "./pages/(user)/Profile";
 import Menu from "./pages/(admin)/Menu";
-
+import Analytics from "./pages/(admin)/Analytics";
 
 function App() {
   return (
@@ -69,6 +69,7 @@ function App() {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/admin/hotel/dashboard" element={<Dashboard />} />
         <Route path="/admin/hotel/menu" element={<Menu />} />
+        <Route path="/admin/hotel/analytics" element={<Analytics />} />
 
         {/* Cart */}
         <Route path='/cart' element={<CartPage/>}></Route>
