@@ -7,7 +7,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useRef, useState } from "react";
 import { Collapse } from "@mui/material";
 
@@ -64,7 +64,7 @@ const FloatingDockMobile = ({
                 <Link
                   to={item.href}
                   key={item.title}
-                  className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center"
+                  className={`h-10 w-10 rounded-full dark:bg-neutral-900 flex items-center justify-center `}
                 >
                   <div className="h-4 w-4">{item.icon}</div>
                 </Link>
@@ -83,14 +83,12 @@ const FloatingDockMobile = ({
   );
 };
 
-const FloatingDockDesktop = ({
-  items,
-  className,
-}: {
-  items: { title: string; icon: React.ReactNode; href: string }[];
-  className?: string;
+const FloatingDockDesktop = ({items,className,}: {items: { title: string; icon: React.ReactNode; href: string }[];className?: string;
 }) => {
+  const location = useLocation();
   let mouseY = useMotionValue(Infinity);
+
+  console.log(location.pathname)
 
   return (
     <div
@@ -102,20 +100,22 @@ const FloatingDockDesktop = ({
       )}
     >
       {items.map((item, index) => (
-        <IconContainer
-          mouseY={mouseY}
-          key={item.title}
-          {...item}
-          index={index}
-          totalItems={items.length}
-        />
+        <div className={`${location.pathname === `/admin/hotel/${item.title.toLowerCase()}` ? 'bg-[--secondary] text-white' : 'bg-[--primary] text-black'}  rounded-full text-[--primary]`} 
+        key={index}>
+            <IconContainer
+            mouseY={mouseY}
+            key={item.title}
+            {...item}
+            index={index}
+            totalItems={items.length}
+          />
+        </div>
       ))}
     </div>
   );
 };
 
 function IconContainer({
-  mouseY,
   title,
   icon,
   href,
@@ -139,7 +139,7 @@ function IconContainer({
         ref={ref}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="rounded-full bg-[--primary] text-black flex items-center justify-center relative shadow-lg"
+        className={`flex items-center justify-center relative shadow-lg`}
       >
         <AnimatePresence>
           {hovered && (
@@ -154,7 +154,7 @@ function IconContainer({
           )}
         </AnimatePresence>
         <motion.div
-          className="flex items-center justify-center w-12 h-12 p-3"
+          className="flex items-center justify-center w-12 h-12 p-3 "
         >
           {icon}
         </motion.div>
