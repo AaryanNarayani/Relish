@@ -23,7 +23,7 @@
   --nonVeg: #d32f2f;
   --line: rgba(93, 64, 55, 0.2);
   --relative: relative-faux, serif;
-  /* --manrope: Manrope, sans-serif; */
+  --manrope: Manrope, sans-serif;
 }
 
 html,
@@ -48,4 +48,20 @@ body {
 
 .no-scroller::-webkit-scrollbar-thumb {
   display: none;
+}
+
+.preserve-3d{
+  transform-style : preserve-3d;
+}
+ 
+.backface-hidden{
+  backface-visibility : hidden;
+}
+
+.rotate-y{
+  transform : rotateY(180deg);
+}
+
+.rotate-y-180:hover{
+  transform : rotateY(180deg);
 }
