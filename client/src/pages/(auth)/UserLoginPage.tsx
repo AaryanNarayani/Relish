@@ -2,9 +2,10 @@ import axios from "axios";
 import { Phone, X } from "lucide-react";
 import {Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
-import {Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Spinner } from "../../components/ui/Spinner";
 import { BASE_URL } from "../../lib/vars";
+import { toast } from "sonner";
 
 
 type FormData = {
@@ -18,11 +19,12 @@ function UserLoginPage() {
     password : ""
   });
 
+
+  const navigate = useNavigate();
   const [display, setDisplay] = useState(true);
   const [isLocked, setIsLocked] = useState(false);
 
 
-  // const [display,setDisplay] = useState<DisplayState>(false);
 
   const UpdateForm = (evt : React.ChangeEvent<HTMLInputElement>)=>{
       const {name , value} = evt.target;
@@ -30,7 +32,31 @@ function UserLoginPage() {
   }
 
   const handleSubmit = async() =>{
-    console.log(formData)
+    // console.log(formData)
+    setIsLocked(true);
+      try{
+        const result = await axios.post(
+          `${BASE_URL}/api/v1/auth/login`,
+          {
+            email : formData.email,
+            password : formData.password,
+          }
+        );
+
+          console.log(result.data);
+          toast.success("Login Successful!");
+          if(result.data.token){
+            navigate("/");
+            localStorage.setItem("token" , result.data.token);
+          } else {
+            throw Error("Failed to get the token, idk what a token is tbh");
+          }
+      }
+      catch(e : any){
+          console.error(e.response.data.message);
+          toast.error(e.response.data.message);
+      }
+      setIsLocked(false);
   }
 
   function handleGoogleAuth() {
@@ -83,6 +109,7 @@ function UserLoginPage() {
         </div>
         <button className="w-full h-fit bg-[--primary] border border-[--primary] rounded-full px-1 py-2 text-[--secondary]  hover:bg-white hover:text-[--primary] hover:border-[--primary]"
                 onClick={handleSubmit}
+                disabled={isLocked}
         >
             {isLocked ? <Spinner/> : 'LOGIN' }
         </button>

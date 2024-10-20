@@ -74,6 +74,9 @@ function App() {
       </Routes>
       <FooterBar/>
     </Router>
+    // <>
+    //   <AdminPage/>
+    // </>
    
   );
 }
