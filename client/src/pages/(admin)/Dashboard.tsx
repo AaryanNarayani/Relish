@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BookText, Images, Pencil, ShoppingBag, Star, X } from "lucide-react";
+import { ChartPie, Images, LayoutDashboard, Pencil, ShoppingBag, X } from "lucide-react";
 import { AdminNav } from "../../components/ui/AdminNav";
 import { Link } from "react-router-dom";
 import {
@@ -195,12 +195,12 @@ const Dashboard: React.FC = () => {
   const links: NavLink[] = [
     {
       title: "DashBoard",
-      icon: <BookText className="h-full w-full text-black" />,
+      icon: <LayoutDashboard className="h-full w-full text-black" />,
       href: "/admin/hotel/dashboard",
     },
     {
       title: "Menu",
-      icon: <Star className="h-full w-full" />,
+      icon: <ShoppingBag className="h-full w-full" />,
       href: "/admin/hotel/menu",
     },
     {
@@ -210,7 +210,7 @@ const Dashboard: React.FC = () => {
     },
     {
       title: "Analytics",
-      icon: <ShoppingBag />,
+      icon: <ChartPie />,
       href: "/admin/hotel/analytics",
     },
   ];
@@ -223,7 +223,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="w-full flex justify-center relative px-10">
       <div className="w-[1400px] flex py-10">
-        <div className="absolute top-1/2 translate-y-[-50%]">
+        <div className="fixed top-1/2 translate-y-[-50%]">
           <AdminNav items={links} />
         </div>
         <div className="w-2/3 px-20 flex flex-col gap-5">
