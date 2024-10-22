@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Flipper({data} : any){
     return(
         <div className="theCard relative min-w-[250px] max-w-[250px] h-[350px] bg-white preserve-3d rotate-y-180 transition-transform ease-in-out 
-        duration-700 rounded ">
+        duration-500 rounded ">
             <div className="thefront absolute w-full h-full backface-hidden rounded ">
                 <img className = "rounded h-full w-full object-cover"src={data.img} alt="Front" />
             </div>
