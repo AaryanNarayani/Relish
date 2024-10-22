@@ -1,6 +1,8 @@
 import { Minus, Plus } from "lucide-react";
 import { useState } from "react";
 
+type CardVariant = 'default' | 'white';
+
 interface SearchCardProps {
   dish: string;
   desc: string;
@@ -8,16 +10,28 @@ interface SearchCardProps {
   stars: number;
   url: string;
   veg: boolean;
+  variant?: CardVariant;
 }
 
-function SearchCard({ dish, desc, price, stars, url, veg }: SearchCardProps) {
+function SearchCard({ 
+  dish, 
+  desc, 
+  price, 
+  stars, 
+  url, 
+  veg, 
+  variant = 'default' 
+}: SearchCardProps) {
   const [count, setCount] = useState(0);
+  const Whitestyle = `bg-white shadow-md`;
 
   const incrementCount = () => setCount(prev => prev + 1);
   const decrementCount = () => setCount(prev => Math.max(0, prev - 1));
 
   return (
-    <div className="w-52 rounded border border-[--secondary] overflow-hidden">
+    <div className={`w-52 rounded overflow-hidden ${
+      variant == 'white' ? Whitestyle : 'border border-[--secondary]'
+    }`}>
       <img src={url} alt={dish} className="" />
       <div className="p-2 relative">
         <div className="absolute right-2 -top-10 transition-all duration-300 ease-in-out">
@@ -40,14 +54,13 @@ function SearchCard({ dish, desc, price, stars, url, veg }: SearchCardProps) {
             </div>
           )}
         </div>
-        <h1 className={` ${ veg ? 'text-[--veg]' : 'text-[--nonVeg]'}  font-bold`}>{dish}</h1>
+        <h1 className={`${veg ? 'text-[--veg]' : 'text-[--nonVeg]'} font-bold`}>{dish}</h1>
         <p className="text-xs font-[manrope] h-12 overflow-hidden">{desc}</p>
         <div className="flex justify-between mt-1">
           <p className="text-[--meta]">${price.toFixed(2)}</p>
           <p className="text-[--meta]">{('★'.repeat(stars)).padEnd(5, '☆')}</p>
         </div>
       </div>
-      
     </div>
   );
 }
