@@ -1,6 +1,6 @@
 import {
+  ArrowUpZA,
   ChartPie,
-  Filter,
   Images,
   LayoutDashboard,
   Pencil,
@@ -63,7 +63,7 @@ function Menu() {
             </h1>
             <div className="w-full pl-28 pt-5 flex flex-col gap-4">
               <SearchBar />
-              <Filter />
+              <div className="px-5"><ArrowUpZA /></div>
               <div className="flex flec-col"></div>
             </div>
           </div>
