@@ -195,7 +195,7 @@ const Dashboard: React.FC = () => {
   const links: NavLink[] = [
     {
       title: "DashBoard",
-      icon: <LayoutDashboard className="h-full w-full text-black" />,
+      icon: <LayoutDashboard className="h-full w-full" />,
       href: "/admin/hotel/dashboard",
     },
     {
@@ -205,7 +205,7 @@ const Dashboard: React.FC = () => {
     },
     {
       title: "Images",
-      icon: <Images className="h-full w-full text-black" />,
+      icon: <Images className="h-full w-full" />,
       href: "/admin/hotel/images",
     },
     {
