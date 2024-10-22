@@ -23,6 +23,7 @@ import Menu from "./pages/(admin)/Menu";
 import Analytics from "./pages/(admin)/Analytics";
 import MainPage from "./pages/MainPage";
 import Images from "./pages/(admin)/Images";
+import RestoRegistrationMenu from "./pages/(resto)/RestoRegistrationMenu";
 
 function App() {
   return (
@@ -67,6 +68,7 @@ function App() {
         <Route path="/resto/reviews" element={<Reviews />} />
         <Route path="/resto/images" element={<RestoImagePage />} />
         <Route path="/resto/order" element={<RestoOrders />} />
+        <Route path="/resto/registration/menu" element={<RestoRegistrationMenu/>}></Route>
 
         {/* Admin */}
         <Route path="/admin" element={<AdminPage />} />
