@@ -22,6 +22,7 @@ import Profile from "./pages/(user)/Profile";
 import Menu from "./pages/(admin)/Menu";
 import Analytics from "./pages/(admin)/Analytics";
 import MainPage from "./pages/MainPage";
+import Images from "./pages/(admin)/Images";
 
 function App() {
   return (
@@ -71,6 +72,7 @@ function App() {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/admin/hotel/dashboard" element={<Dashboard />} />
         <Route path="/admin/hotel/menu" element={<Menu />} />
+        <Route path="/admin/hotel/images" element={<Images />} />
         <Route path="/admin/hotel/analytics" element={<Analytics />} />
 
         {/* Cart */}
