@@ -21,6 +21,7 @@ import CartPage from "./pages/CartPage";
 import Profile from "./pages/(user)/Profile";
 import Menu from "./pages/(admin)/Menu";
 import Analytics from "./pages/(admin)/Analytics";
+import MainPage from "./pages/MainPage";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
       />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<MainPage />} />
 
         {/* User */}
         <Route path="/user" element={<Profile />} />
