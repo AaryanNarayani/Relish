@@ -1,4 +1,3 @@
-import { div } from "framer-motion/client";
 import { MapPinned,SquareMenu } from "lucide-react";
 
 
@@ -8,7 +7,7 @@ export default function RegistrationProgressCard(){
         <h1 className="text-[--secondary] text-[33px] pt-[10px]">Registration Progress</h1>
         <div className="p-[10px] pt-[37px] h-[85%] w-full flex flex-col gap-[25px] items-center ">
         <div className="h-[20%] w-full flex items-center gap-[20px]">
-            <button className="h-20 bg-white rounded-full w-20 border-[6px] border-[--primary]">
+            <button className="p-4 bg-white rounded-full border-[6px] border-[--primary]">
             <MapPinned />
             </button>
             <div className="flex flex-col relative w-full">
@@ -16,13 +15,13 @@ export default function RegistrationProgressCard(){
                 <p className="text-[12px]  text-[#9f9f9f] absolute top-[24px] w-full">Name location and contact Number</p>
             </div>
           </div>
-          <div className="h-[20%] w-full flex items-center">
-            <button className="h-[100%] bg-white rounded-full w-[73px]  border-[6px] border-[--primary] flex items-center justify-center">
-            <SquareMenu size={35}/>
+          <div className="w-full flex items-center">
+            <button className="p-4 bg-white rounded-full  border-[6px] border-[--primary] flex items-center justify-center">
+            <SquareMenu/>
             </button>
-            <div className="flex flex-col relative">
-                <p className="text-[22px] pl-[30px] text-[--secondary]">Menu and Operational details</p>
-                <p className="text-[12px] pl-[40px] text-[#9f9f9f] absolute top-[24px] w-full">Name location and contact Number</p>
+            <div className="flex flex-col relative gap-2">
+                <p className="text-[22px] ml-5 text-[--secondary]">Menu and Operational details</p>
+                <p className="text-[12px] ml-5 text-[#9f9f9f] absolute top-[24px] w-full">Name location and contact Number</p>
             </div>
           </div>
         </div>
