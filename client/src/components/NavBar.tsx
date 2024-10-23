@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const navItems = [
   {
     name: "Add Resto",
-    url: "/add-resto",
+    url: "/resto/registration/info",
   },
   {
     name: "Login",
