@@ -137,8 +137,8 @@ router.get("/logout", (req:Request, res:Response, next:NextFunction) => {
 router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
 router.get("/google/callback",passport.authenticate("google", {
-    successRedirect: process.env.CLIENT_URL || "/",
-    failureRedirect: "/login/failed",
+    successRedirect: `${process.env.CLIENT_URL}/home` || "#",
+    failureRedirect: `${process.env.CLIENT_URL}/user/login`,
   })
 );
 
