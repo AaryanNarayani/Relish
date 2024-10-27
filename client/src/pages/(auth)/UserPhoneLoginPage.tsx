@@ -36,13 +36,13 @@ function UserPhoneLoginPage() {
         {}
       );
 
-      toast.success("Done Bro go next");
+      toast.success("Otp sent successfully");
       console.log(response.data);
       navigate(`/user/login/otp?name=${formData.name}&phone=${formData.phone}`);
     } catch (error: any) {
       setlocked(false);
       toast.error(error.response.data.message);
-      console.log("Could Not Login:", error.messgae);
+      console.log("Could Nopt Login:", error.message);
     }
   };
 
