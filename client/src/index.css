@@ -14,6 +14,7 @@
 :root {
   --primary: #feba42;
   --primary-50: hsla(38, 99%, 63%, 0.3);
+  --primary-60: hsla(38, 99%, 63%, 0.5);
   --secondary: #5d4037;
   --ternary: #fff8e1;
   --meta: #ff9800;

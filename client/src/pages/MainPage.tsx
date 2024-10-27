@@ -1,6 +1,6 @@
 import { ArrowRight, Search, ShoppingCart } from "lucide-react";
-import { ChangeEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Categories from "../components/ui/Categories";
 import SearchCard from "../components/SearchCard";
 
@@ -15,6 +15,16 @@ interface bestSellers {
 
 export default function MainPage() {
   const [searchText, setSearchText] = useState<string>("");
+  const ref = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+  useEffect(()=>{
+    ref.current?.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        navigate(`/find?q=${searchText}`);
+      }
+    });
+  },[searchText])
+  
   const bestSellers: bestSellers[] = [
     {
       dish: "Tonkotsu Ramen",
@@ -70,8 +80,9 @@ export default function MainPage() {
         </div>
         <div>
           {/* Search Bar */}
-          <div className="flex items-center bg-white shadow-md rounded-full overflow-hidden">
+          <div className="flex px-2 py-1 items-center bg-white shadow-md rounded-full overflow-hidden mr-14">
             <input
+              ref={ref}
               type="text"
               className="focus:outline-none border-0 pl-4 py-2 w-64"
               placeholder="Let's grab you some food"
@@ -80,7 +91,7 @@ export default function MainPage() {
             />
             <Link
               to={`/find?q=${searchText}`}
-              className="flex items-center justify-center bg-[--primary] text-white p-2 rounded-full transition-colors duration-200 hover:bg-[--primary-dark]"
+              className="flex items-center justify-center text-[--primary] p-2 rounded-full"
             >
               <Search className="w-5 h-5" />
             </Link>
@@ -88,8 +99,16 @@ export default function MainPage() {
         </div>
       </div>
       <div className="flex flex-col p-28 pt-0">
-        <div className="bg-[--primary] flex justify-center items-center font-bold text-4xl rounded-lg h-56 w-full">
-          40% OFF on all orders above ₹500
+        <div className="relative bg-[--primary-60] flex justify-center items-center font-bold text-4xl rounded-lg h-56 w-full">
+          <img src="/Relish-logo.png" className="absolute opacity-20 h-32 w-32"></img>
+          <div className="flex flex-col gap-1">
+            <h1 className="font-medium text-5xl">
+            <span className="font-bold">40 %</span> OFF on selective restaurants 
+            </h1>
+            <h6 className="font-thin text-3xl text-black/70">
+              Order now!
+            </h6>
+          </div>
         </div>
         <div className="mt-5">
           <Categories />
@@ -98,10 +117,10 @@ export default function MainPage() {
           <div className="flex justify-start text-black/75 text-lg">
             Top Recommendations
           </div>
-          <div className="flex mt-5 gap-4 overflow-x-scroll no-scroller">
+          <div className="flex py-2 mt-5 gap-4 overflow-x-scroll no-scroller">
             {bestSellers.map((item, index) => {
               return (
-                <div>
+                <div key={index}>
                   <SearchCard key={index} {...item} variant="white" />
                 </div>
               );
@@ -120,10 +139,10 @@ export default function MainPage() {
           <div className="flex justify-start text-black/75 text-lg">
             Previous Orders
           </div>
-          <div className="flex mt-5 gap-4 overflow-x-scroll no-scroller">
+          <div className="flex py-2 mt-5 gap-4 overflow-x-scroll no-scroller">
             {bestSellers.map((item, index) => {
               return (
-                <div>
+                <div key={index}>
                   <SearchCard key={index} {...item} variant="white" />
                 </div>
               );

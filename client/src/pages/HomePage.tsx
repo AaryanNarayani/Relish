@@ -18,7 +18,7 @@ function HomePage() {
           <div className="relative z-10 flex flex-col items-center -translate-y-1/2 ">
             <h1 className="text-8xl text-[--secondary]">RELISH</h1>
             <p className="mt-2 mb-4 text-xl">
-              Life is a combination of magic and pasta.
+            Your deliciously animated food adventure awaits!
             </p>
             <SearchBar />
           </div>
@@ -27,7 +27,7 @@ function HomePage() {
       <div className=" p-5 w-full flex justify-center">
         <div className="w-fit">
           <h1 className="text-3xl mb-3 font-medium ">
-            What's your next bite? Choose below!
+              What's your next bite? Choose below!
           </h1>
           <NextBite />
         </div>

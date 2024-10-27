@@ -70,8 +70,8 @@ function UserRegistrationPage() {
         console.log(result.data);
         toast.success("Registered successfully");
         if (result.data.token) {
-          navigate("/find");
           localStorage.setItem("token", result.data.token);
+          navigate("/home");
         } else {
           throw Error("Failed to get the token");
         }
