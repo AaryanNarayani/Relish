@@ -177,7 +177,7 @@ const searchResultList: SearchResult[] = [
 ];
 
 function SearchPage() {
-  const [searchType, setSearchType] = useState<'dish' | 'resto'>('dish');
+  const [searchType, setSearchType] = useState<string>('dish');
   const [filteredResults, setFilteredResults] = useState<SearchResult[]>(searchResultList);
   const location = useLocation();
 
@@ -191,6 +191,8 @@ function SearchPage() {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const query = searchParams.get('q');
+    const type = searchParams.get('type') || 'dish';
+    setSearchType(type);
     handleSearch(query || '');
   }, [location.search]);
 
