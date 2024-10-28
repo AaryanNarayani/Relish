@@ -1,30 +1,75 @@
-import { MapPinned,SquareMenu } from "lucide-react";
+import { MapPinned, SquareMenu } from "lucide-react";
+import { useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
+export default function RegistrationProgressCard() {
+  type navData = {
+    id: string;
+    icon: React.FC;
+    name: string;
+    desc: string;
+    url: string;
+    loc: string;
+  };
 
-export default function RegistrationProgressCard(){
-    return(
-        <div className="bg-white h-full w-[68vh] ml-[60px] rounded-md p-[30px]">
-        <h1 className="text-[--secondary] text-[33px] pt-[10px]">Registration Progress</h1>
-        <div className="p-[10px] pt-[37px] h-[85%] w-full flex flex-col gap-[25px] items-center ">
-        <div className="h-[20%] w-full flex items-center gap-[20px]">
-            <button className="p-4 bg-white rounded-full border-[6px] border-[--primary]">
-            <MapPinned />
-            </button>
-            <div className="flex flex-col relative w-full">
-                <p className="text-[22px]  text-[--secondary] w-full">Resto Information </p>
-                <p className="text-[12px]  text-[#9f9f9f] absolute top-[24px] w-full">Name location and contact Number</p>
-            </div>
-          </div>
-          <div className="w-full flex items-center">
-            <button className="p-4 bg-white rounded-full  border-[6px] border-[--primary] flex items-center justify-center">
-            <SquareMenu/>
-            </button>
-            <div className="flex flex-col relative gap-2">
-                <p className="text-[22px] ml-5 text-[--secondary]">Menu and Operational details</p>
-                <p className="text-[12px] ml-5 text-[#9f9f9f] absolute top-[24px] w-full">Name location and contact Number</p>
-            </div>
-          </div>
-        </div>
+  // const [activePage, setActivePage] = useState("info");
+  const location = useLocation();
+
+  const data: navData[] = [
+    {
+      loc: "/resto/registration/info",
+      id: "info",
+      icon: MapPinned,
+      name: "Resto Information",
+      desc: "Name Location and Contact Number",
+      url: "info",
+    },
+    {
+      loc: "/resto/registration/menu",
+      id: "menu",
+      icon: SquareMenu,
+      name: "Menu and Operational",
+      desc: "Menu Items and othr details",
+      url: "menu",
+    },
+  ];
+
+  return (
+    <div className="bg-white h-full w-[68vh] ml-[60px] rounded-md p-[30px]">
+      <h1 className="text-[--secondary] text-[33px] pt-[10px]">
+        Registration Progress
+      </h1>
+      <div className="p-[10px] pt-[25px] h-[85%] w-full flex flex-col gap-[10px]">
+        {data.map((val) => {
+          return (
+            <>
+              <NavLink
+                key={val.id}
+                to={`/resto/registration/${val.url}`}
+                className={"h-24 w-full flex items-center gap-5"}
+              >
+                <button
+                  className={`rounded-full p-4 border-[5px] ${
+                    location.pathname === val.loc
+                      ? "border-[--primary] scale-[1.2] "
+                      : ""
+                  }`}
+                >
+                  <val.icon />
+                </button>
+                <div className="flex flex-col relative w-full ">
+                  <p className="text-[22px] ml-5 text-[--secondary] w-full">
+                    {val.name}
+                  </p>
+                  <p className="text-[12px] ml-7 text-[#9f9f9f] absolute top-[26px] w-full">
+                    {val.desc}
+                  </p>
+                </div>
+              </NavLink>
+            </>
+          );
+        })}
       </div>
-    );
+    </div>
+  );
 }
