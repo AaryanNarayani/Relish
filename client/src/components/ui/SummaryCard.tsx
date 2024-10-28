@@ -31,7 +31,7 @@ function SummaryCard() {
         <p>{total}</p>
       </div>
       <hr className="border-[--primary]"/>
-      <button className="w-full bg-[--primary] rounded-full p-3">Checkout</button>
+      <button className="w-full bg-[--primary] rounded-full p-3 border-2 border-[--primary] hover:bg-inherit">Checkout</button>
     </div>
   );
 }
