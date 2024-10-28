@@ -3,8 +3,12 @@ import SearchBar from "../../components/resto/SearchBar"
 import { useEffect, useRef, useState } from "react";
 import AddModal from "../../components/resto/AddModal";
 
-function RestoRegistrationMenu() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+
+export default function RestoRegistrationMenu() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+//   const [isHover, setIsHover] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
 
     const ref = useRef<HTMLDivElement>(null);
 
@@ -61,5 +65,3 @@ function RestoRegistrationMenu() {
         </div>
     )
 }
-
-export default RestoRegistrationMenu
