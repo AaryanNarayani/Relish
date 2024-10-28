@@ -6,12 +6,10 @@ import RegistrationProgressCard from "../../components/RegistrationProgressCard"
 
 function RestoRegistrationMenu() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isHover, setIsHover] = useState(false);
+//   const [isHover, setIsHover] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  const handleAdd = () => {
-    setIsModalOpen(true);
-  };
+  const handleAdd = () => {setIsModalOpen(true)};
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

@@ -12,7 +12,7 @@ export default function RegistrationProgressCard() {
     loc: string;
   };
 
-  const [activePage, setActivePage] = useState("info");
+  // const [activePage, setActivePage] = useState("info");
   const location = useLocation();
 
   const data: navData[] = [
