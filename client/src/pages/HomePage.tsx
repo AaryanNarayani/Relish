@@ -4,6 +4,7 @@ import MobileAppBar from "../components/MobileAppBar";
 import NextBite from "../components/NextBite";
 import SearchBar from "../components/SearchBar";
 import { Link } from "react-router-dom";
+import CartButton from "../components/cart/CartButton";
 
 
 
@@ -17,7 +18,7 @@ function HomePage() {
             alt="Background"
             className="absolute w-[30rem] h-fit left-1/2 top-1/2 -translate-x-1/2 -translate-y-48 object-cover"
           />
-          <div className="relative z-10 flex flex-col items-center -translate-y-1/2 ">
+          <div className="relative z-1 flex flex-col items-center -translate-y-1/2 ">
             <h1 className="text-8xl text-[--secondary]">RELISH</h1>
             <p className="mt-2 mb-4 text-xl">
             Your deliciously animated food adventure awaits!
@@ -40,9 +41,7 @@ function HomePage() {
       <div className="w-full justify-center flex">
           <HomeAccordion />
       </div>
-      <Link to='/cart' className="fixed bottom-10 right-10 bg-[--secondary] p-4 rounded-full text-white hover:bg-opacity-90 transition-colors duration-200">
-        <ShoppingCart />
-      </Link>
+      <CartButton/>
     </div>
   );
 }
