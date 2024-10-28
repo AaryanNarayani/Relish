@@ -1,7 +1,9 @@
+import { ShoppingCart } from "lucide-react";
 import HomeAccordion from "../components/HomeAccordion";
 import MobileAppBar from "../components/MobileAppBar";
 import NextBite from "../components/NextBite";
 import SearchBar from "../components/SearchBar";
+import { Link } from "react-router-dom";
 
 
 
@@ -37,8 +39,10 @@ function HomePage() {
       </div>
       <div className="w-full justify-center flex">
           <HomeAccordion />
-
       </div>
+      <Link to='/cart' className="fixed bottom-10 right-10 bg-[--secondary] p-4 rounded-full text-white hover:bg-opacity-90 transition-colors duration-200">
+        <ShoppingCart />
+      </Link>
     </div>
   );
 }
