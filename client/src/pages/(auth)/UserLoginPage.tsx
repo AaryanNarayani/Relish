@@ -107,6 +107,13 @@ function UserLoginPage() {
                  {display ? <Eye/> : <EyeOff/>}
             </div>
         </div>
+        <div className="flex justify-between">
+          <div className="flex gap-2">
+            <input type="checkbox" className="rounded" />
+          <label>Remember me</label>
+          </div>
+          <Link to='/user/forgotpassword' className="">Forgot password?</Link>
+        </div>
         <button className="w-full h-fit bg-[--primary] border border-[--primary] rounded-full px-1 py-2 text-[--secondary]  hover:bg-white hover:text-[--primary] hover:border-[--primary]"
                 onClick={handleSubmit}
                 disabled={isLocked}

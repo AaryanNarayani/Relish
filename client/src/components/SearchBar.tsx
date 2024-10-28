@@ -3,7 +3,7 @@ import { Search } from "lucide-react";
 import { Link, useNavigate } from 'react-router-dom';
 
 function SearchBar() {
-  const [isSelected, setIsSelected] = useState<'dish' | 'resto'>('dish');
+  const [isSelected, setIsSelected] = useState<string>('dish');
   const [searchText, setSearchText] = useState<string>('');
   const searchRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
@@ -37,6 +37,8 @@ function SearchBar() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const query = urlParams.get('q');
+    const type = urlParams.get('type') || 'dish';
+    setIsSelected(type);
     if (query) {
       setSearchText(decodeURIComponent(query));
     }

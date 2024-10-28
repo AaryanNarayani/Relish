@@ -1,6 +1,7 @@
 import { useState } from "react"
 import HeroPencil from "../ui/icons/HeroPencil"
 import HeroTrash from "../ui/icons/HeroTrash"
+import { motion } from 'framer-motion'
 
 function AddModal({}) {
 
@@ -18,7 +19,11 @@ function AddModal({}) {
               />
               {
                 isHover && 
-                <div className="h-40 flex items-center  gap-20 absolute bg-[black]/50 w-full justify-center rounded-xl transition-colors">
+                <motion.div className="h-40 flex items-center  gap-20 absolute bg-[black]/50 w-full justify-center rounded-xl transition-colors"
+                initial={{opacity:0}}
+                animate={{opacity:1}}
+                exit={{opacity:0}}
+                >
                 <div className="z-1 relative flex flex-col items-center cursor-pointer">
                   <HeroPencil />
                   <p>Upload Image</p>
@@ -28,7 +33,7 @@ function AddModal({}) {
                   <HeroTrash/>
                   <p>Delete Image</p>
                 </div>
-              </div>
+              </motion.div>
               }
             </div>
 

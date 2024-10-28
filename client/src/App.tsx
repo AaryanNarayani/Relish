@@ -26,6 +26,7 @@ import RestoRegistrationInfo from "./pages/(resto)/RestoRegistrationInfo";
 import MainPage from "./pages/MainPage";
 import Images from "./pages/(admin)/Images";
 import RestoRegistrationMenu from "./pages/(resto)/RestoRegistrationMenu";
+import ForgetPassword from "./pages/(auth)/ForgetPassword";
 
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
         {/* User */}
         <Route path="/user" element={<Profile />} />
         <Route path="/user/login" element={<UserLoginPage />} />
+        <Route path="/user/forgotpassword" element={<ForgetPassword />} />
         <Route path="/user/login/phone" element={<UserPhoneLoginPage/>} />
         <Route path="/user/login/otp" element={<OtpPage/>} />
         <Route path="/user/register" element={<UserRegistrationPage />} />
@@ -74,7 +76,6 @@ function App() {
 
         <Route path="/resto/registration/info" element={<RestoRegistrationInfo/>}></Route>
         <Route path="/resto/registration/menu" element={<RestoRegistrationMenu/>}></Route>
-
 
         {/* Admin */}
         <Route path="/admin" element={<AdminPage />} />
