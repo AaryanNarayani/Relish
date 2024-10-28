@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import AddModal from "../../components/resto/AddModal";
 import RegistrationProgressCard from "../../components/RegistrationProgressCard";
 
-function RestoRegistrationMenu() {
+export default function RestoRegistrationMenu() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 //   const [isHover, setIsHover] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -60,4 +60,4 @@ function RestoRegistrationMenu() {
   );
 }
 
-export default RestoRegistrationMenu;
+
