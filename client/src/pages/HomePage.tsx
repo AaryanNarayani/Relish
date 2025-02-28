@@ -3,8 +3,6 @@ import MobileAppBar from "../components/MobileAppBar";
 import NextBite from "../components/NextBite";
 import SearchBar from "../components/SearchBar";
 
-
-
 function HomePage() {
   return (
     <div>

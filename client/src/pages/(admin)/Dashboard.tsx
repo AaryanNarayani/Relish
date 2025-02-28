@@ -123,7 +123,7 @@ const EditCuisine: React.FC<EditCuisineProps> = ({
   };
 
   return (
-    <div className="pl-24 flex flex-col gap-5">
+    <div className="pl-24 flex flex-col gap-5 mb-40">
       <div className=" flex items-center gap-5">
         <h1 className="text-3xl pl-4">Cuisine</h1>
         <div

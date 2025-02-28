@@ -46,8 +46,8 @@ function UserLoginPage() {
           console.log(result.data);
           toast.success("Login Successful!");
           if(result.data.token){
-            navigate("/home");
             localStorage.setItem("token" , result.data.token);
+            navigate("/home");
           } else {
             throw Error("Failed to get the token, idk what a token is tbh");
           }
