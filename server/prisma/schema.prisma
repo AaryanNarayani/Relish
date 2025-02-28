@@ -11,11 +11,11 @@ model User {
   id            Int         @id @default(autoincrement())
   name          String
   email         String?     @unique
-  password      String?     
+  password      String?
   address       String?
-  googleId      String?     @unique  // Unique identifier from Google
-  googleProfile Json?      
-  avatar        String?     // URL to user's avatar (can be from Google or uploaded)
+  googleId      String?     @unique
+  googleProfile Json?
+  avatar        String?
   phone         String?     @unique
   isVerified    Boolean     @default(false)
   createdAt     DateTime    @default(now())

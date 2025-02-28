@@ -47,7 +47,7 @@ function OtpPage() {
         })
         localStorage.setItem('token',res.data.token)
         toast.success('Login Successfull');
-        navigate(res.data.token ? '/' : '/error')
+        navigate(res.data.token ? '/home' : '/error')
         setCode(Array(4).fill(''))
       } catch (error : any) {
         toast.error(error.response.data.message)

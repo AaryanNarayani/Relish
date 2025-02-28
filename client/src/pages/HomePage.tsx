@@ -6,8 +6,6 @@ import SearchBar from "../components/SearchBar";
 import { Link } from "react-router-dom";
 import CartButton from "../components/cart/CartButton";
 
-
-
 function HomePage() {
   return (
     <div>
